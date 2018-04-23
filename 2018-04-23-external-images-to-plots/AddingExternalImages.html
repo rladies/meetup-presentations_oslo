@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adding external images to plots</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Athanasia Mo Mowinckel" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Adding external images to plots
+### Athanasia Mo Mowinckel
+### 23.04.2018
+
+---
+
+
+
+
+class: center, middle
+
+&lt;img src="examples/Figure4.svg" height="600px" /&gt;
+
+---
+class: center, middle
+&lt;img src="examples/Figure1.svg" height="600px" /&gt;
+
+---
+
+```r
+library(tidyverse)
+
+mtcars %&gt;% gather() %&gt;%  
+  ggplot(aes(x=value)) + geom_histogram() + facet_wrap(~key, scales="free", nrow=2)
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+## Plotting
+
+#### When wanting to add external images to plots, there are several necessary steps:  
+1. You need to create all the images you might want to add, place them in a folder, and give the images names (drop the whitespaces) that make sense according to the data you have.  
+1. The images **might** need to be processed to make plotting easier (i.e. them being the same size, backgrounds transparent etc.) I use [ImageMagick](https://www.imagemagick.org/script/index.php) for this, but there are R-packages to help, like [imager](https://cran.r-project.org/web/packages/imager/vignettes/gettingstarted.html)  
+1. A clear idea of what you want to plot and why  
+- **how** comes with trial-and-error and perserverence (and hopefully with the help of these slides)  
+
+---
+
+### Single brain network images
+&lt;img src="img/single/0000_trans.png" width="92" /&gt;&lt;img src="img/single/0001_trans.png" width="93" /&gt;&lt;img src="img/single/0002_trans.png" width="93" /&gt;&lt;img src="img/single/0003_trans.png" width="93" /&gt;&lt;img src="img/single/0004_trans.png" width="92" /&gt;&lt;img src="img/single/0005_trans.png" width="92" /&gt;&lt;img src="img/single/0006_trans.png" width="88" /&gt;&lt;img src="img/single/0007_trans.png" width="95" /&gt;&lt;img src="img/single/0008_trans.png" width="93" /&gt;&lt;img src="img/single/0009_trans.png" width="95" /&gt;&lt;img src="img/single/0010_trans.png" width="88" /&gt;&lt;img src="img/single/0011_trans.png" width="85" /&gt;&lt;img src="img/single/0012_trans.png" width="61" /&gt;&lt;img src="img/single/0013_trans.png" width="93" /&gt;&lt;img src="img/single/0014_trans.png" width="64" /&gt;&lt;img src="img/single/0015_trans.png" width="85" /&gt;&lt;img src="img/single/0016_trans.png" width="81" /&gt;&lt;img src="img/single/0017_trans.png" width="61" /&gt;&lt;img src="img/single/0018_trans.png" width="77" /&gt;&lt;img src="img/single/0019_trans.png" width="88" /&gt;&lt;img src="img/single/0020_trans.png" width="57" /&gt;&lt;img src="img/single/0021_trans.png" width="61" /&gt;&lt;img src="img/single/0022_trans.png" width="92" /&gt;&lt;img src="img/single/0023_trans.png" width="61" /&gt;&lt;img src="img/single/0024_trans.png" width="93" /&gt;&lt;img src="img/single/0025_trans.png" width="92" /&gt;&lt;img src="img/single/0026_trans.png" width="93" /&gt;&lt;img src="img/single/0027_trans.png" width="83" /&gt;&lt;img src="img/single/0028_trans.png" width="93" /&gt;&lt;img src="img/single/0029_trans.png" width="67" /&gt;&lt;img src="img/single/0030_trans.png" width="93" /&gt;&lt;img src="img/single/0031_trans.png" width="79" /&gt;&lt;img src="img/single/0032_trans.png" width="91" /&gt;&lt;img src="img/single/0033_trans.png" width="92" /&gt;&lt;img src="img/single/0034_trans.png" width="95" /&gt;&lt;img src="img/single/0035_trans.png" width="85" /&gt;&lt;img src="img/single/0036_trans.png" width="64" /&gt;&lt;img src="img/single/0037_trans.png" width="93" /&gt;&lt;img src="img/single/0038_trans.png" width="52" /&gt;&lt;img src="img/single/0039_trans.png" width="57" /&gt;
+
+---
+### Three images per brain network 
+
+&lt;img src="img/three/0000_trans.png" width="44" /&gt;&lt;img src="img/three/0001_trans.png" width="45" /&gt;&lt;img src="img/three/0002_trans.png" width="45" /&gt;&lt;img src="img/three/0003_trans.png" width="45" /&gt;&lt;img src="img/three/0004_trans.png" width="45" /&gt;&lt;img src="img/three/0005_trans.png" width="44" /&gt;&lt;img src="img/three/0006_trans.png" width="44" /&gt;&lt;img src="img/three/0007_trans.png" width="45" /&gt;&lt;img src="img/three/0008_trans.png" width="45" /&gt;&lt;img src="img/three/0009_trans.png" width="45" /&gt;&lt;img src="img/three/0010_trans.png" width="44" /&gt;&lt;img src="img/three/0011_trans.png" width="45" /&gt;&lt;img src="img/three/0012_trans.png" width="42" /&gt;&lt;img src="img/three/0013_trans.png" width="45" /&gt;&lt;img src="img/three/0014_trans.png" width="41" /&gt;&lt;img src="img/three/0015_trans.png" width="44" /&gt;&lt;img src="img/three/0016_trans.png" width="43" /&gt;&lt;img src="img/three/0017_trans.png" width="34" /&gt;&lt;img src="img/three/0018_trans.png" width="42" /&gt;&lt;img src="img/three/0019_trans.png" width="44" /&gt;&lt;img src="img/three/0020_trans.png" width="34" /&gt;&lt;img src="img/three/0021_trans.png" width="36" /&gt;&lt;img src="img/three/0022_trans.png" width="45" /&gt;&lt;img src="img/three/0023_trans.png" width="38" /&gt;&lt;img src="img/three/0024_trans.png" width="45" /&gt;&lt;img src="img/three/0025_trans.png" width="44" /&gt;&lt;img src="img/three/0026_trans.png" width="45" /&gt;&lt;img src="img/three/0027_trans.png" width="45" /&gt;&lt;img src="img/three/0028_trans.png" width="45" /&gt;&lt;img src="img/three/0029_trans.png" width="44" /&gt;&lt;img src="img/three/0030_trans.png" width="45" /&gt;&lt;img src="img/three/0031_trans.png" width="42" /&gt;&lt;img src="img/three/0032_trans.png" width="45" /&gt;&lt;img src="img/three/0033_trans.png" width="45" /&gt;&lt;img src="img/three/0034_trans.png" width="45" /&gt;&lt;img src="img/three/0035_trans.png" width="45" /&gt;&lt;img src="img/three/0036_trans.png" width="37" /&gt;&lt;img src="img/three/0037_trans.png" width="45" /&gt;&lt;img src="img/three/0038_trans.png" width="43" /&gt;&lt;img src="img/three/0039_trans.png" width="34" /&gt;
+
+---
+### Get images
+
+Get file-paths for all the images
+
+```r
+*TRIPLE = list.files("img/three", full.names = T)
+TRIPLE
+```
+
+```
+##  [1] "img/three/0000_trans.png" "img/three/0001_trans.png"
+##  [3] "img/three/0002_trans.png" "img/three/0003_trans.png"
+##  [5] "img/three/0004_trans.png" "img/three/0005_trans.png"
+##  [7] "img/three/0006_trans.png" "img/three/0007_trans.png"
+##  [9] "img/three/0008_trans.png" "img/three/0009_trans.png"
+## [11] "img/three/0010_trans.png" "img/three/0011_trans.png"
+## [13] "img/three/0012_trans.png" "img/three/0013_trans.png"
+## [15] "img/three/0014_trans.png" "img/three/0015_trans.png"
+## [17] "img/three/0016_trans.png" "img/three/0017_trans.png"
+## [19] "img/three/0018_trans.png" "img/three/0019_trans.png"
+## [21] "img/three/0020_trans.png" "img/three/0021_trans.png"
+## [23] "img/three/0022_trans.png" "img/three/0023_trans.png"
+## [25] "img/three/0024_trans.png" "img/three/0025_trans.png"
+## [27] "img/three/0026_trans.png" "img/three/0027_trans.png"
+## [29] "img/three/0028_trans.png" "img/three/0029_trans.png"
+## [31] "img/three/0030_trans.png" "img/three/0031_trans.png"
+## [33] "img/three/0032_trans.png" "img/three/0033_trans.png"
+## [35] "img/three/0034_trans.png" "img/three/0035_trans.png"
+## [37] "img/three/0036_trans.png" "img/three/0037_trans.png"
+## [39] "img/three/0038_trans.png" "img/three/0039_trans.png"
+```
+
+---
+Strip the images of charachters and any non-numeric characters
+
+```r
+NAMES = gsub("[a-zA-Z]|[[:punct:]]","",TRIPLE)
+NAMES
+```
+
+```
+##  [1] "0000" "0001" "0002" "0003" "0004" "0005" "0006" "0007" "0008" "0009"
+## [11] "0010" "0011" "0012" "0013" "0014" "0015" "0016" "0017" "0018" "0019"
+## [21] "0020" "0021" "0022" "0023" "0024" "0025" "0026" "0027" "0028" "0029"
+## [31] "0030" "0031" "0032" "0033" "0034" "0035" "0036" "0037" "0038" "0039"
+```
+
+Create a data.frame by combining the two vectors, ggplot will be happy for this!
+
+```r
+DATA = cbind(TRIPLE,NAMES) %&gt;% as.data.frame(stringsAsFactors=F)
+DATA %&gt;% glimpse()
+```
+
+```
+## Observations: 40
+## Variables: 2
+## $ TRIPLE &lt;chr&gt; "img/three/0000_trans.png", "img/three/0001_trans.png",...
+## $ NAMES  &lt;chr&gt; "0000", "0001", "0002", "0003", "0004", "0005", "0006",...
+```
+
+---
+
+Let's do a very simple plot of the names of the files.
+
+```r
+ggplot(DATA) + geom_label(aes(x=NAMES), y=1, label=NAMES) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+Let's try getting them over several "rows"
+
+```r
+DATA$Rows = c(rep(2,20), rep(1,20))
+ggplot(DATA) + geom_label(aes(x=NAMES, y=Rows), label=NAMES) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+
+---
+Ops! We need to adjust the x-coordinates too!
+
+```r
+DATA$Columns = c(1:20, 1:20)
+ggplot(DATA) + geom_label(aes(x=Columns, y=Rows), label=NAMES) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+Let's have a look at how to get an image into the plot.  
+Get necessary packages
+
+```r
+library(png); library(grid)
+```
+
+Read in the image
+
+```r
+img = readPNG(DATA$TRIPLE[1])
+```
+
+And transform it into a graphics object (grob)
+
+```r
+g =  rasterGrob(img, interpolate=TRUE)
+```
+
+---
+Then we add it to the plot!
+
+```r
+ggplot(DATA) + 
+  geom_label(aes(x=Columns, y=Rows), label=NAMES) + 
+*  annotation_custom(grob = g, ymin = 1,  ymax =2, xmin = .5, xmax = 1.5) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+To add all the images, we need to loop through the list, and add them incrementally, annotations don't take `aes()` in ggplot. 
+
+This requires a couple of steps:
+- save the main plot to a global variable
+
+```r
+PLOT = ggplot(DATA) + 
+  geom_label(aes(x=Columns, y=Rows), label=NAMES) 
+```
+
+- create a global variable where the `grob`'s of all the images may be placed.
+
+
+```r
+g = list()
+```
+
+- create a loop where all the grobs are placed in `g` and are incrementally added to the plot
+
+```r
+for(i in 1:nrow(DATA)){
+  img = readPNG(DATA$TRIPLE[i])
+  g[[i]] = rasterGrob(img, interpolate=TRUE)
+  
+  PLOT = PLOT +
+*    annotation_custom(
+*      grob= g[[i]], 
+*      ymin = DATA$Rows[i]+.1,  ymax = DATA$Rows[i]+.7, 
+*      xmin = DATA$Columns[i]-.5, xmax = DATA$Columns[i] +.5) 
+*
+}
+```
+
+---
+Let' have a look at that. 
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+Our top row is "missing". Because `ggplot` sets the plotting area through the first command `geom_label` all the images in the top row is outside the area. We can fix this by chaging the scale!
+
+```r
+PLOT + scale_y_continuous(limits=c(1,3))
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+---
+Since this isn't really a plot, it's an overview of the images, we may want to strip the plotting area of unecessary information, like axes etc.
+
+```r
+PLOT + scale_y_continuous(limits=c(1,3)) + theme_void()
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+class: inverse, center, middle
+
+We've successfully added external images to a plot.  
+
+# Well done, us!
+
+But not a "true" plot, let's give a barchart a go!
+
+---
+To make a barchart, let's just assing some random values to the various images, and plot them like that.
+
+
+```r
+DATA$Values = sample(1:100, size=nrow(DATA), replace=T)
+
+ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity")
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+First thing's first, the labels are impossible to read like this. Let's rotate them a little.
+
+
+```r
+ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + 
+  theme(axis.text.x = element_text(angle=60))
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+---
+I'm happy with that for now. Now, I'd like to add the brain images at the bottom, to help readers remember what labels goes with which brain. Let's start with a single one, and adjust the plot accordingly.
+
+Let's read in the file paths for all the images in `img/single`, and create a grob from the first image, just like before.
+
+
+```r
+PLOT = ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + 
+  theme(axis.text.x = element_text(angle=60))
+
+DATA$SINGLES = list.files("img/single", full.names = T)
+
+img = readPNG(DATA$SINGLES[1])
+g = rasterGrob(img, interpolate = T)
+
+
+PLOT = PLOT + 
+  annotation_custom(grob = g, ymin = 1,  ymax = 2, 
+                    xmin = .5, xmax = 1.5) 
+```
+
+---
+Let's have a look at that.
+
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+---
+Do you see it? It's that teeny tiny speck at the bottom of the first column. Well, we need to get that sorted for sure, the size is completely off.
+
+
+```r
+ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + 
+  theme(axis.text.x = element_text(angle=60)) + 
+  annotation_custom(grob = g, ymin = 1,  ymax = 10, xmin = .5, xmax = 1.5) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+---
+Much better! Let's chuck them all in there, with a loop like last time. Since we also want everything on one row (compared to two before), we add a column with a counter before we start.
+
+
+```r
+DATA$N = seq(1,nrow(DATA))
+PLOT = ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + theme(axis.text.x = element_text(angle=60)) 
+
+g = list()
+for(i in 1:nrow(DATA)){
+  img = readPNG(DATA$SINGLES[i])
+  g[[i]] = rasterGrob(img, interpolate = T)
+  
+  PLOT = PLOT +
+    annotation_custom(
+      grob= g[[i]], 
+      ymin = 1,  ymax = 10, 
+      xmin = DATA$N[i]-.4, xmax = DATA$N[i] +.4) 
+}
+```
+
+---
+Let's have a look at that.
+
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+---
+Right'o! They're all there. But their placement is a little inconventient. We can put them at the top of their bars, if we want.
+
+
+```r
+PLOT = ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + theme(axis.text.x = element_text(angle=60)) 
+
+g = list()
+for(i in 1:nrow(DATA)){
+  img = readPNG(DATA$SINGLES[i])
+  g[[i]] = rasterGrob(img, interpolate = T)
+  
+  PLOT = PLOT +
+    annotation_custom(
+      grob= g[[i]], 
+      ymin = DATA$Values[i],  ymax = DATA$Values[i]+10, 
+      xmin = DATA$N[i]-.4, xmax = DATA$N[i] +.4) 
+}
+```
+
+---
+Let's have a look at that.
+
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+
+---
+Some of them end up outside the chart limits, but we can solve that again.
+
+
+```r
+PLOT + scale_y_continuous(limits=c(0,105))
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+
+---
+We can also place them below the bars.
+
+
+```r
+PLOT = ggplot(DATA) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + theme(axis.text.x = element_text(angle=60)) 
+
+g = list()
+for(i in 1:nrow(DATA)){
+  img = readPNG(DATA$SINGLES[i])
+  g[[i]] = rasterGrob(img, interpolate = T)
+  
+  PLOT = PLOT +
+    annotation_custom(
+      grob= g[[i]], 
+      ymin = -Inf,  ymax = 0, 
+      xmin = DATA$N[i]-.4, xmax = DATA$N[i] +.4) 
+}
+```
+
+---
+Let's have a look at that.
+
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+
+---
+The labels are crashing with the images! We can adjust them to appear slightly further down with `vjust`.
+
+
+```r
+PLOT + theme(axis.text.x = element_text(angle=60, vjust=.5)) 
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+
+---
+The images are very small. We might consider only to plot the bars and corresponding images that have larger bars. The will provide more space.
+
+We will need to subset the data a little first, keeping only data value above 25.
+
+
+```r
+DATA_sub = DATA %&gt;% filter(Values &gt; 60)
+```
+
+Then we do the same as before, just with the new data
+
+```r
+PLOT = ggplot(DATA_sub) + geom_histogram(aes(x=NAMES, y=Values), stat="identity") + theme(axis.text.x = element_text(angle=60)) 
+
+g = list()
+for(i in 1:nrow(DATA_sub)){
+  img = readPNG(DATA_sub$SINGLES[i])
+  g[[i]] = rasterGrob(img, interpolate = T)
+  
+  PLOT = PLOT +
+    annotation_custom(
+      grob= g[[i]], 
+      ymin = -Inf,  ymax = 0, 
+      xmin = DATA$N[i]-.4, xmax = DATA$N[i] +.4) 
+}
+```
+
+---
+Let's have a look at that.  
+
+
+```r
+PLOT
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
+
+---
+Great! Now we need to adjust the image-sizes, and we only need to fix the scale!
+
+
+```r
+PLOT + scale_y_continuous(limits=c(-10,105)) + theme(axis.text.x = element_text(angle=60, vjust=.5), axis.text = element_text(size = 20))
+```
+
+![](AddingExternalImages_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+
+---
+class: inverse, center, middle
+
+# There you go!
+
+A small intro to adding images directly to your plots!
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
