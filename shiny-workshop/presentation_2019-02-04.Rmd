@@ -1,0 +1,19 @@
+---
+title: "Shiny workshop"
+author: "Aurora & Lene"
+date: "2019-02-04"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Let's make a shiny dashboard!
