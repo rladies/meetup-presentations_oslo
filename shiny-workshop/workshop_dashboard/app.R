@@ -25,16 +25,7 @@ ui <- dashboardPage(skin="purple",
   
   dashboardBody(
    
-    ############### adjust css #############
-    tags$head(tags$style(HTML('
-    /* navbar (rest of the header) */
-
-        .skin-purple .main-header .navbar {
-                              background-color: #88398a;
-                              }      
-       '))),
-    
-    ########################################
+    includeCSS("www/custom.css"),
     
      tabItems(
 
