@@ -24,7 +24,6 @@ ui <- dashboardPage(skin="purple",
   ),
   
   dashboardBody(
-   
     includeCSS("www/custom.css"),
     
      tabItems(

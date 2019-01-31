@@ -24,6 +24,8 @@ class: center, middle, inverse, title-slide
 
 # Let's make a shiny dashboard!
 
+Intro to shiny?
+
 ---
 
 #Setup:
@@ -40,8 +42,8 @@ install.packages('gapminder')
 ---
 
 # Starter code
-
-https://rstudio.github.io/shinydashboard/get_started.html
+- https://rstudio.github.io/shinydashboard/get_started.html or
+- https://github.com/rladies/meetup-presentations_oslo -&gt; shiny-workshop/starter_kit
 
 
 ```r
@@ -67,6 +69,35 @@ shinyApp(ui = ui, server = server)
 
 ---
 
+# Make it pretty using CSS
+
+Create a new file custom.css under www:
+
+```css
+.skin-purple .main-header .navbar {background-color: #88398a;}      
+.skin-purple .main-header .logo {background-color: #88398a;}
+.skin-purple .main-header .logo:hover {background-color: #88398a;}
+```
+
+
+&lt;style type="text/css"&gt;
+.skin-purple .main-header .navbar {background-color: #88398a;}      
+.skin-purple .main-header .logo {background-color: #88398a;}
+.skin-purple .main-header .logo:hover {background-color: #88398a;}
+&lt;/style&gt;
+
+
+Include it in your app under dashboardBody
+
+```r
+dashboardBody(
+  includeCSS("www/custom.css"),
+  ...
+```
+
+
+---
+
 
 # New stuff?
 
@@ -76,6 +107,13 @@ shinyApp(ui = ui, server = server)
 #install.packages('googleVis')
 #install.packages('plotly')
 ```
+
+---
+
+# Resources
+
+- https://shiny.rstudio.com
+- https://rstudio.github.io/shinydashboard/
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
