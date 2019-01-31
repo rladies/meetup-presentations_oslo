@@ -44,7 +44,11 @@ install.packages('plotly')
 
 # File structure
 
-avo: fill in here
+We will use the upper file structure:
+
+![](presentation_images/file_structure.png)
+
+.center[![](presentation_images/file_structure2.png)]
 
 
 ---
@@ -416,17 +420,40 @@ library(plotly)
 ```
 
 ---
-
-
-# Use action button to change tab?
-
-lnd: example code
+class:inverse, center, middle
+#Some extras
 
 ---
 
-# ColourInput?
+# ColourInput
 
-avo: fill in code here
+```{r}
+install.packages('colourpicker')
+```
+
+
+ui inside box:
+```{r}
+colourInput(inputId="colour", label="Point colour", value = "#88398a") #<<
+```
+
+server inside renderPlot:
+```{r}
+ggplot( 
+      data = gapminder_data,  
+      aes(x = gdpPercap, y = lifeExp, size = input$point_size) #<<
+    ) + 
+      geom_point(col=input$colour) + #<<
+      #scale_colour_manual(values = country_colors) + #<<
+      scale_x_log10() +
+      ggtitle(input$plot_title)
+```
+
+
+---
+# Use action button to change tab?
+
+lnd: example code
 
 ---
 
