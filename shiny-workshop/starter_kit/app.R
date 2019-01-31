@@ -11,7 +11,7 @@ ui <- dashboardPage(
 
 # R code goes here:
 server <- function(input, output) {
-   
+  
 }
 
 # Run the application 
