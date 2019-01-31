@@ -1,5 +1,5 @@
 ---
-title: "Shiny workshop"
+title: "Let's make a shiny dashboard"
 author: "Aurora & Lene"
 date: "2019-02-04"
 output:
@@ -14,11 +14,34 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
-# Let's make a shiny dashboard!
+# What is shiny?
 
-Intro to shiny?
+
+![](presentation_images/shiny_gallery.png)
+
+---
+
+# Two parts: ui and server
+
+.pull-left[
+ui: “renders” HTML
+- Input from widgets
+- Output from server
+  ]
+
+.pull-right[
+server: runs R code
+- use inputs from ui
+- create outputs using R code
+  ]
+
+
+<img src="presentation_images/interactivity.png" style="width: 80%" />
+
+
 
 ---
 
@@ -30,6 +53,7 @@ If you don't already have the packages:
 install.packages('shiny')
 install.packages('shinydashboard')
 install.packages('gapminder')
+install.packages('tidyverse') #ggplot + dplyr ++
 ```
 
 ---
@@ -58,6 +82,274 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
+---
+
+# Title and color
+
+```{r, eval = F}
+ui <- dashboardPage(skin = "purple",#<<
+  dashboardHeader(title = "Supercool shiny app"),#<<
+  dashboardSidebar(),
+  dashboardBody()
+)
+```
+
+![](presentation_images/purple_app.png)
+
+---
+
+# Create tabs and menu
+
+
+```{r}
+ui <- dashboardPage(skin = "purple",
+  dashboardHeader(title = "Supercool shiny app"),
+  dashboardSidebar(
+    sidebarMenu(#<<
+      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group")),#<<
+      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar"))#<<
+    )#<<
+  ),
+  dashboardBody(
+    tabItems(#<<
+      tabItem(tabName = "interactive_plot", h2("Interactive plot")),#<<
+      tabItem(tabName = "interactive_table", h2("Build an interactive table"))#<<
+    )#<<
+  )
+)
+```
+
+
+Icons: https://shiny.rstudio.com/reference/shiny/0.14/icon.html
+
+
+---
+
+class:inverse, center, middle
+
+# First plot!
+
+---
+
+# Inputs and outputs 
+
+---
+
+# Inputs and outputs 
+
+UI:
+
+```{r}
+tabItem(tabName = "interactive_plot", h2("Interactive plot"),
+        fluidRow(#<<
+          box(plotOutput("gapminder_plot"))#<<
+        )#<<
+)
+```
+
+---
+
+
+# Gapminder:
+
+```{r, eval = T}
+
+library(tidyverse) #dplyr and ggplot
+library(gapminder)
+
+gapminder %>% 
+  head() %>% 
+  knitr::kable('html')
+```
+
+
+---
+
+
+# Create the plot
+
+
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+Server:
+
+```{r}
+
+server <- function(input, output) { 
+  
+  output$gapminder_plot <- renderPlot({#<<
+    #<<
+    gapminder_data <- gapminder#<<
+    #<<
+    ggplot(#<<
+      data = gapminder_data, #<<
+      aes(x = gdpPercap, y = lifeExp, size = pop, color = country)#<<
+    ) +#<<
+      geom_point(show.legend = FALSE) +#<<
+      scale_colour_manual(values = country_colors) +#<<
+      scale_x_log10()#<<
+  })#<<
+}
+
+```
+---
+
+# Inputs widgets:
+
+https://shiny.rstudio.com/gallery/widget-gallery.html:
+
+![](presentation_images/numeric_input.png)
+
+---
+
+# TextInput widget
+
+```{r}
+fluidRow(
+  box(#<<
+    textInput(#<<
+      inputId = "plot_title", #<<
+      label = "Select title for plot:", #<<
+      value = "GDP vs life expectancy")#<<
+  ),#<<
+  box(plotOutput("gapminder_plot"))
+)
+```
+
+---
+
+#Interactivity
+Connect the widget to the plot
+
+```{r}
+server <- function(input, output) { 
+  
+  output$gapminder_plot <- renderPlot({ 
+     
+    gapminder_data <- gapminder 
+     
+    ggplot( 
+      data = gapminder_data,  
+      aes(x = gdpPercap, y = lifeExp, size = pop, color = country) 
+    ) + 
+      geom_point(show.legend = FALSE) + 
+      scale_colour_manual(values = country_colors) + 
+      scale_x_log10() +
+      ggtitle(input$plot_title) #<<
+  }) 
+}
+```
+
+
+---
+
+# Filter the data using a sliderInput
+
+
+ui inside box:
+```{r}
+sliderInput(inputId = "year_limits", label = "Select years", #<<
+            min = min(gapminder$year), max = max(gapminder$year),#<<
+            value = c(1977, 2002)#<<
+            )#<<
+
+```
+
+Server inside renderPlot:
+```{r}
+gapminder_data <- gapminder %>% 
+  filter(year >= input$year_limits[1] & year <= input$year_limits[2]) #<<
+```
+
+---
+
+# Use selectInput widget to pick continents
+
+ui inside box:
+```{r}
+selectInput(inputId = "continents", label = "Continents",#<<
+            choices = levels(gapminder$continent),#<<
+            multiple = TRUE,#<<
+            selected = "Europe")#<<
+
+```
+
+Server inside renderPlot:
+```{r}
+gapminder_data <- gapminder %>% 
+  filter(
+    year >= input$year_limits[1] & year <= input$year_limits[2],
+    continent %in% input$continents #<<
+    )
+```
+
+---
+
+
+# Exercise: create a numeric input box to set the point size
+
+- inputId = "point_size"
+- label = "Point size"
+- value = 2
+
+ui inside box:
+```{r}
+#
+```
+
+
+server inside renderPlot:
+```{r}
+#
+```
+
+---
+
+# Exercise: create a numeric input widget to set the point size
+
+ui inside box:
+```{r}
+numericInput(inputId = "point_size", label = "Point size", value = 2, min = 1) #<<
+```
+
+
+server inside renderPlot:
+```{r}
+ggplot( 
+      data = gapminder_data,  
+      aes(x = gdpPercap, y = lifeExp, size = input$point_size, color = country) #<<
+    ) + 
+      geom_point(show.legend = FALSE) + 
+      scale_colour_manual(values = country_colors) + 
+      scale_x_log10() +
+      ggtitle(input$plot_title)
+```
+
+---
+
+# Data table
+-  install + library?
+
+```{r}
+ DT::dataTableOutput(outputId = "gapminder_table")
+```
+
+```{r}
+output$gapminder_table <- DT::renderDataTable(DT::datatable(
+    data = gapminder, 
+    filter = ('top')
+  ))
+```
+
+
+---
+
+
+# Extras..
 
 ---
 
@@ -76,6 +368,19 @@ Include it in your app under dashboardBody
 dashboardBody(
   includeCSS("www/custom.css"),
   ...
+```
+
+---
+
+#Rladies logo
+
+After title..
+```{r}
+tags$li(a(href = 'https://rladies.org/',
+          img(src = 'logo.png',
+              title = "Rladies Home", height = "30px"),
+          style = "padding-top:10px; padding-bottom:10px;"),
+        class = "dropdown")
 ```
 
 
