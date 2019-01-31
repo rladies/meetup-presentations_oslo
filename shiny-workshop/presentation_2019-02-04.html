@@ -23,6 +23,59 @@ class: center, middle, inverse, title-slide
 
 
 # Let's make a shiny dashboard!
+
+---
+
+#Setup:
+
+If you don't already have the packages:
+
+
+```r
+install.packages('shiny')
+install.packages('shinydashboard')
+install.packages('gapminder')
+```
+
+---
+
+# Starter code
+
+https://rstudio.github.io/shinydashboard/get_started.html
+
+
+```r
+library(shiny)
+library(shinydashboard)
+
+# User interface:
+ui &lt;- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+
+# R code goes here:
+server &lt;- function(input, output) {
+  
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+
+---
+
+
+# New stuff?
+
+
+```r
+#install.packages('colourpicker')
+#install.packages('googleVis')
+#install.packages('plotly')
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

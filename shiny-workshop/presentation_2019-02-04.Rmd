@@ -17,3 +17,54 @@ options(htmltools.dir.version = FALSE)
 ```
 
 # Let's make a shiny dashboard!
+
+---
+
+#Setup:
+
+If you don't already have the packages:
+
+```{r, eval = F}
+install.packages('shiny')
+install.packages('shinydashboard')
+install.packages('gapminder')
+```
+
+---
+
+# Starter code
+
+https://rstudio.github.io/shinydashboard/get_started.html
+
+```{r, eval = F}
+library(shiny)
+library(shinydashboard)
+
+# User interface:
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+
+# R code goes here:
+server <- function(input, output) {
+  
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+
+---
+
+
+# New stuff?
+
+```{r, eval = F}
+#install.packages('colourpicker')
+#install.packages('googleVis')
+#install.packages('plotly')
+```
+
