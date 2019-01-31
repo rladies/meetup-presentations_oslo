@@ -24,26 +24,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ---
 
-# Two parts: ui and server
 
-.pull-left[
-ui: “renders” HTML
-- Input from widgets
-- Output from server
-  ]
-
-.pull-right[
-server: runs R code
-- use inputs from ui
-- create outputs using R code
-  ]
-
-
-<img src="presentation_images/interactivity.png" style="width: 80%" />
-
-
-
----
 
 #Setup:
 
@@ -53,8 +34,18 @@ If you don't already have the packages:
 install.packages('shiny')
 install.packages('shinydashboard')
 install.packages('gapminder')
-install.packages('tidyverse') #ggplot + dplyr ++
+install.packages('tidyverse')
+install.packages('DT')
+install.packages('plotly')
 ```
+
+---
+
+
+# File structure
+
+avo: fill in here
+
 
 ---
 
@@ -125,30 +116,36 @@ Icons: https://shiny.rstudio.com/reference/shiny/0.14/icon.html
 
 ---
 
+
+# Two parts: ui and server
+
+lnd: fill in more here
+
+.pull-left[
+ui: “renders” HTML
+- Input from widgets
+- Output from server
+  ]
+
+.pull-right[
+server: runs R code
+- use inputs from ui
+- create outputs using R code
+  ]
+
+
+<img src="presentation_images/interactivity.png" style="width: 80%" />
+
+
+
+---
+
 class:inverse, center, middle
 
-# First plot!
+# Outputs
+
 
 ---
-
-# Inputs and outputs 
-
----
-
-# Inputs and outputs 
-
-UI:
-
-```{r}
-tabItem(tabName = "interactive_plot", h2("Interactive plot"),
-        fluidRow(#<<
-          box(plotOutput("gapminder_plot"))#<<
-        )#<<
-)
-```
-
----
-
 
 # Gapminder:
 
@@ -162,17 +159,44 @@ gapminder %>%
   knitr::kable('html')
 ```
 
+---
+
+
+# Data table
+-  install + library?
+
+```{r}
+ DT::dataTableOutput(outputId = "gapminder_table")
+```
+
+```{r}
+output$gapminder_table <- DT::renderDataTable(DT::datatable(
+    data = gapminder, 
+    filter = ('top')
+  ))
+```
+
 
 ---
+
 
 
 # Create the plot
 
 
-
 ```{r}
 library(tidyverse)
 library(gapminder)
+```
+
+UI:
+
+```{r}
+tabItem(tabName = "interactive_plot", h2("Interactive plot"),
+        fluidRow(#<<
+          box(plotOutput("gapminder_plot"))#<<
+        )#<<
+)
 ```
 
 Server:
@@ -198,7 +222,13 @@ server <- function(input, output) {
 ```
 ---
 
-# Inputs widgets:
+class:inverse, center, middle
+
+# Inputs
+
+---
+
+# Input widgets:
 
 https://shiny.rstudio.com/gallery/widget-gallery.html:
 
@@ -221,9 +251,12 @@ fluidRow(
 ```
 
 ---
-
+class:inverse, center, middle
 #Interactivity
-Connect the widget to the plot
+
+---
+
+#Connect the widget to the plot
 
 ```{r}
 server <- function(input, output) { 
@@ -331,27 +364,9 @@ ggplot(
 
 ---
 
-# Data table
--  install + library?
-
-```{r}
- DT::dataTableOutput(outputId = "gapminder_table")
-```
-
-```{r}
-output$gapminder_table <- DT::renderDataTable(DT::datatable(
-    data = gapminder, 
-    filter = ('top')
-  ))
-```
 
 
----
 
-
-# Extras..
-
----
 
 # Make it pretty using CSS
 
@@ -370,6 +385,8 @@ dashboardBody(
   ...
 ```
 
+avo: extra css?
+
 ---
 
 #Rladies logo
@@ -387,13 +404,35 @@ tags$li(a(href = 'https://rladies.org/',
 ---
 
 
-# New stuff?
+# Make it move..
 
 ```{r, eval = F}
-#install.packages('colourpicker')
-#install.packages('googleVis')
-#install.packages('plotly')
+library(plotly)
 ```
+
+
+```{r}
+
+```
+
+---
+
+
+# Use action button to change tab?
+
+lnd: example code
+
+---
+
+# ColourInput?
+
+avo: fill in code here
+
+---
+
+# What next?
+
+avo: How to deploy your app? shinyapps.io
 
 ---
 

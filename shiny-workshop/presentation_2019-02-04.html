@@ -29,26 +29,7 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Two parts: ui and server
 
-.pull-left[
-ui: “renders” HTML
-- Input from widgets
-- Output from server
-  ]
-
-.pull-right[
-server: runs R code
-- use inputs from ui
-- create outputs using R code
-  ]
-
-
-&lt;img src="presentation_images/interactivity.png" style="width: 80%" /&gt;
-
-
-
----
 
 #Setup:
 
@@ -59,8 +40,18 @@ If you don't already have the packages:
 install.packages('shiny')
 install.packages('shinydashboard')
 install.packages('gapminder')
-install.packages('tidyverse') #ggplot + dplyr ++
+install.packages('tidyverse')
+install.packages('DT')
+install.packages('plotly')
 ```
+
+---
+
+
+# File structure
+
+avo: fill in here
+
 
 ---
 
@@ -134,37 +125,74 @@ Icons: https://shiny.rstudio.com/reference/shiny/0.14/icon.html
 
 ---
 
+
+# Two parts: ui and server
+
+lnd: fill in more here
+
+.pull-left[
+ui: “renders” HTML
+- Input from widgets
+- Output from server
+  ]
+
+.pull-right[
+server: runs R code
+- use inputs from ui
+- create outputs using R code
+  ]
+
+
+&lt;img src="presentation_images/interactivity.png" style="width: 80%" /&gt;
+
+
+
+---
+
 class:inverse, center, middle
 
-# First plot!
+# Outputs
+
 
 ---
-
-# Inputs and outputs 
-
----
-
-# Inputs and outputs 
-
-UI:
-
-
-```r
-tabItem(tabName = "interactive_plot", h2("Interactive plot"),
-*       fluidRow(
-*         box(plotOutput("gapminder_plot"))
-*       )
-)
-```
-
----
-
 
 # Gapminder:
 
 
 ```r
 library(tidyverse) #dplyr and ggplot
+```
+
+```
+## -- Attaching packages ---------------------------------------------------------------- tidyverse 1.2.1 --
+```
+
+```
+## v ggplot2 3.0.0     v purrr   0.2.5
+## v tibble  1.4.2     v dplyr   0.7.6
+## v tidyr   0.8.1     v stringr 1.3.1
+## v readr   1.1.1     v forcats 0.3.0
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.5.1
+```
+
+```
+## Warning: package 'purrr' was built under R version 3.5.1
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.5.1
+```
+
+```
+## -- Conflicts ------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 library(gapminder)
 
 gapminder %&gt;% 
@@ -235,18 +263,48 @@ gapminder %&gt;%
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+---
+
+
+# Data table
+-  install + library?
+
+
+```r
+ DT::dataTableOutput(outputId = "gapminder_table")
+```
+
+
+```r
+output$gapminder_table &lt;- DT::renderDataTable(DT::datatable(
+    data = gapminder, 
+    filter = ('top')
+  ))
+```
+
 
 ---
+
 
 
 # Create the plot
 
 
 
-
 ```r
 library(tidyverse)
 library(gapminder)
+```
+
+UI:
+
+
+```r
+tabItem(tabName = "interactive_plot", h2("Interactive plot"),
+*       fluidRow(
+*         box(plotOutput("gapminder_plot"))
+*       )
+)
 ```
 
 Server:
@@ -269,6 +327,10 @@ server &lt;- function(input, output) {
 * })
 }
 ```
+---
+
+# Inputs
+
 ---
 
 # Inputs widgets:
@@ -412,29 +474,9 @@ ggplot(
 
 ---
 
-# Data table
--  install + library?
 
 
-```r
- DT::dataTableOutput(outputId = "gapminder_table")
-```
 
-
-```r
-output$gapminder_table &lt;- DT::renderDataTable(DT::datatable(
-    data = gapminder, 
-    filter = ('top')
-  ))
-```
-
-
----
-
-
-# Extras..
-
----
 
 # Make it pretty using CSS
 
@@ -473,14 +515,34 @@ tags$li(a(href = 'https://rladies.org/',
 ---
 
 
-# New stuff?
+# Make it move..
 
 
 ```r
-#install.packages('colourpicker')
-#install.packages('googleVis')
-#install.packages('plotly')
+library(plotly)
 ```
+
+
+
+
+---
+
+
+# Use action button to change tab?
+
+lnd: example code
+
+---
+
+# ColourInput?
+
+avo: fill in code here
+
+---
+
+# What next?
+
+avo: How to deploy your app? shinyapps.io
 
 ---
 
