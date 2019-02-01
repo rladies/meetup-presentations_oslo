@@ -151,16 +151,16 @@ class:inverse, center, middle
 
 ---
 
-# Gapminder:
+# Gapminder data
 
-```{r, eval = T, warning=F, message=F}
+```{r, eval = T, warning = F, message = F}
 
 library(tidyverse)
 library(gapminder)
 
 gapminder %>% 
   head() %>% 
-  knitr::kable('html')
+  knitr::kable("html")
 ```
 
 ---
@@ -414,7 +414,7 @@ library(plotly)
 
 Create a new menu item: 
 ```{r}
-menuItem("Moving chart", tabName = "animated_chart", icon = icon("spinner"))
+menuItem("Moving chart", tabName = "animated_chart", icon = icon("spinner")) 
 ```
 
 Create a new tab:
@@ -481,26 +481,26 @@ ggplot(
 # Actionbuttons can do lot's of things - add one to change the tab
 
 ```{r}
-actionButton(
-  inputId = 'animate_button', 
-  label = 'Animate this selection'
-  )
+actionButton(#<<
+  inputId = 'animate_button', #<<
+  label = 'Animate this selection'#<<
+  )#<<
 ```
 
 ```{r}
-observeEvent(input$animate_button, {
-    updateTabItems(session, 'menu', 'animated_chart')
-  })
-```
-
-
-```{r}
-server <- function(input, output, session) { 
+observeEvent(input$animate_button, { #<<
+    updateTabItems(session, 'menu', 'animated_chart')#<<
+  })#<<
 ```
 
 
 ```{r}
-sidebarMenu(id = 'menu', 
+server <- function(input, output, session) { #<<
+```
+
+
+```{r}
+sidebarMenu(id = 'menu', #<<
 ```
 
 ---
@@ -515,3 +515,14 @@ avo: How to deploy your app? shinyapps.io
 
 - https://shiny.rstudio.com
 - https://rstudio.github.io/shinydashboard/
+
+
+---
+
+# Next meetup: 18 March!
+
+Bayesian methods for rank and preference data - from recommendation systems to cancer genomics - https://www.meetup.com/rladies-oslo/events/256566088/
+
+See also Oslo useR! on Wednesday: https://www.meetup.com/Oslo-useR-Group/events/256805098/
+
+
