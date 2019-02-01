@@ -101,14 +101,14 @@ ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Supercool shiny app"),
   dashboardSidebar(
     sidebarMenu(#<<
-      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar")),#<<
-      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group"))#<<
+      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group")),#<<
+      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar"))#<<
     )#<<
   ),
   dashboardBody(
     tabItems(#<<
-      tabItem(tabName = "interactive_table", h2("Build an interactive table")),#<<
-      tabItem(tabName = "interactive_plot", h2("Interactive plot"))#<<
+      tabItem(tabName = "interactive_plot", h2("Interactive plot")),#<<
+      tabItem(tabName = "interactive_table", h2("Build an interactive table"))#<<
     )#<<
   )
 )
@@ -168,25 +168,20 @@ gapminder %>%
 
 # Data table
 
-Include the DT package:
 ```{r}
-library(DT)#<<
+library(DT)
 ```
 
 
-Add output to ui in the interactive_table tab:
 ```{r}
-tabItem(tabName = "interactive_table", h2("Build an interactive table"),
-        DT::dataTableOutput(outputId = "gapminder_table") #<<
-)
+ DT::dataTableOutput(outputId = "gapminder_table")
 ```
 
-Create the table on the server side:
 ```{r}
-output$gapminder_table <- DT::renderDataTable(DT::datatable(#<<
-    data = gapminder, #<<
-    filter = ('top')#<<
-  ))#<<
+output$gapminder_table <- DT::renderDataTable(DT::datatable(
+    data = gapminder, 
+    filter = ('top')
+  ))
 ```
 
 
@@ -211,13 +206,17 @@ Server:
 
 ```{r}
 server <- function(input, output) { 
-  output$gapminder_plot <- renderPlot({#<<
-    gapminder_data <- gapminder#<<
+  output$gapminder_plot <- renderPlot({
 
-    ggplot(data = gapminder_data, aes(x = year, y = lifeExp, color = country)) +#<<
-      geom_line(show.legend = FALSE) +#<<
-      scale_colour_manual(values = country_colors)#<<
-  })#<<
+    gapminder_data <- gapminder
+
+    ggplot(
+      data = gapminder_data,
+      aes(x = year, y = lifeExp, color = country)
+    ) +
+      geom_line(show.legend = FALSE) +
+      scale_colour_manual(values = country_colors)
+  })
 }
 ```
 ---
@@ -369,6 +368,7 @@ ggplot(
 
 
 # Make it pretty using CSS
+Cascading Style Sheets - the "makeup" of your app
 
 Create a new file custom.css under www:
 ```{css}
@@ -385,19 +385,35 @@ dashboardBody(
   ...
 ```
 
-avo: extra css?
+Advanced css: download the Rladies stylesheet we made for you from
+
+https://github.com/rladies/meetup-presentations_oslo/tree/master/shiny-workshop/workshop_dashboard/www
+
+```{r, eval = F}
+includeCSS("www/rladies_stylesheet.css"), #<<
+
+```
+
+
 
 ---
 
 #Rladies logo
 
-After title..
+Download the logo from
+
+https://github.com/rladies/meetup-presentations_oslo/tree/master/shiny-workshop/workshop_dashboard/www
+
+into your app's www folder and add code.
+
+After dashboard title:
 ```{r}
-tags$li(a(href = 'https://rladies.org/',
-          img(src = 'logo.png',
-              title = "Rladies Home", height = "30px"),
-          style = "padding-top:10px; padding-bottom:10px;"),
-        class = "dropdown")
+dashboardHeader(title = "Supercool shiny app",
+tags$li(a(href = 'https://rladies.org/', #<<
+          img(src = 'logo.png',#<<
+              title = "Rladies Home", height = "30px"),#<<
+          style = "padding-top:10px; padding-bottom:10px;"),#<<
+        class = "dropdown")#<<
 ```
 
 
@@ -448,7 +464,7 @@ output$animated_plot <- renderPlotly({
 
 ---
 class:inverse, center, middle
-#Some extras
+#Some cool extras
 
 ---
 
@@ -505,9 +521,24 @@ sidebarMenu(id = 'menu', #<<
 
 ---
 
-# What next?
+# What next - Shiny in production
 
-avo: How to deploy your app? shinyapps.io
+- Reactivity: next topic to learn
+
+- Responsivity: 
+  + Done for you
+  + App scales size on any gadget (short demo)
+
+- Scaling to many users: 
+  + Shinyloadtest - testing synthetic load of many users
+  + Profvis - what part of code is slow
+  + Keynote talk by Joe Cheng @ rstudioconf:2019:
+  https://resources.rstudio.com/rstudio-conf-2019/shiny-in-production-principles-practices-and-tools-joe-cheng
+
+- Deployment: 
+  + shiny server 
+  + shinyapps.io
+  + RstudioConnect 
 
 ---
 
