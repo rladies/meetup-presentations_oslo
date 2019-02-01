@@ -153,9 +153,9 @@ class:inverse, center, middle
 
 # Gapminder:
 
-```{r, eval = T}
+```{r, eval = T, warning=F, message=F}
 
-library(tidyverse) #dplyr and ggplot
+library(tidyverse)
 library(gapminder)
 
 gapminder %>% 
@@ -167,7 +167,11 @@ gapminder %>%
 
 
 # Data table
--  install + library?
+
+```{r}
+library(DT)
+```
+
 
 ```{r}
  DT::dataTableOutput(outputId = "gapminder_table")
@@ -188,11 +192,6 @@ output$gapminder_table <- DT::renderDataTable(DT::datatable(
 # Create the plot
 
 
-```{r}
-library(tidyverse)
-library(gapminder)
-```
-
 UI:
 
 ```{r}
@@ -206,23 +205,19 @@ tabItem(tabName = "interactive_plot", h2("Interactive plot"),
 Server:
 
 ```{r}
-
 server <- function(input, output) { 
-  
-  output$gapminder_plot <- renderPlot({#<<
-    #<<
-    gapminder_data <- gapminder#<<
-    #<<
-    ggplot(#<<
-      data = gapminder_data, #<<
-      aes(x = gdpPercap, y = lifeExp, size = pop, color = country)#<<
-    ) +#<<
-      geom_point(show.legend = FALSE) +#<<
-      scale_colour_manual(values = country_colors) +#<<
-      scale_x_log10()#<<
-  })#<<
-}
+  output$gapminder_plot <- renderPlot({
 
+    gapminder_data <- gapminder
+
+    ggplot(
+      data = gapminder_data,
+      aes(x = year, y = lifeExp, color = country)
+    ) +
+      geom_line(show.legend = FALSE) +
+      scale_colour_manual(values = country_colors)
+  })
+}
 ```
 ---
 
@@ -410,14 +405,45 @@ tags$li(a(href = 'https://rladies.org/',
 
 # Make it move..
 
-```{r, eval = F}
+Include plotly:
+```{r}
 library(plotly)
 ```
 
 
+Create a new menu item: 
 ```{r}
-
+menuItem("Moving chart", tabName = "animated_chart", icon = icon("spinner"))
 ```
+
+Create a new tab:
+```{r}
+tabItem(
+  tabName = "animated_chart", 
+  h2("Build a motion chart"),
+  plotlyOutput("animated_gapminder_plot")
+)
+```
+
+Create the plot:
+```{r}
+output$animated_plot <- renderPlotly({
+    
+    gapminder_data <- gapminder %>% 
+      filter(year >= input$year_limits[1] & year <= input$year_limits[2])
+    
+    p <- ggplot(#<<
+      data = gapminder_data, #<<
+      aes(x = gdpPercap, y = lifeExp, size = pop, color = continent, frame = year)#<<
+    ) + #<<
+      geom_point(show.legend = FALSE) + #<<
+      scale_colour_manual(values = continent_colors) + #<<
+      scale_x_log10()
+    
+    ggplotly(p)
+  })
+```
+
 
 ---
 class:inverse, center, middle
@@ -451,9 +477,30 @@ ggplot(
 
 
 ---
-# Use action button to change tab?
+# Actionbuttons can do lot's of things - add one to change the tab
 
-lnd: example code
+```{r}
+actionButton(
+  inputId = 'animate_button', 
+  label = 'Animate this selection'
+  )
+```
+
+```{r}
+observeEvent(input$animate_button, {
+    updateTabItems(session, 'menu', 'animated_chart')
+  })
+```
+
+
+```{r}
+server <- function(input, output, session) { 
+```
+
+
+```{r}
+sidebarMenu(id = 'menu', 
+```
 
 ---
 

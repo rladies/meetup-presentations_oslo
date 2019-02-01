@@ -50,7 +50,11 @@ install.packages('plotly')
 
 # File structure
 
-avo: fill in here
+We will use the upper file structure:
+
+![](presentation_images/file_structure.png)
+
+.center[![](presentation_images/file_structure2.png)]
 
 
 ---
@@ -160,39 +164,7 @@ class:inverse, center, middle
 
 
 ```r
-library(tidyverse) #dplyr and ggplot
-```
-
-```
-## -- Attaching packages ---------------------------------------------------------------- tidyverse 1.2.1 --
-```
-
-```
-## v ggplot2 3.0.0     v purrr   0.2.5
-## v tibble  1.4.2     v dplyr   0.7.6
-## v tidyr   0.8.1     v stringr 1.3.1
-## v readr   1.1.1     v forcats 0.3.0
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.1
-```
-
-```
-## Warning: package 'purrr' was built under R version 3.5.1
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.5.1
-```
-
-```
-## -- Conflicts ------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
+library(tidyverse)
 library(gapminder)
 
 gapminder %&gt;% 
@@ -267,7 +239,12 @@ gapminder %&gt;%
 
 
 # Data table
--  install + library?
+
+
+```r
+library(DT)
+```
+
 
 
 ```r
@@ -290,12 +267,6 @@ output$gapminder_table &lt;- DT::renderDataTable(DT::datatable(
 # Create the plot
 
 
-
-```r
-library(tidyverse)
-library(gapminder)
-```
-
 UI:
 
 
@@ -312,28 +283,28 @@ Server:
 
 ```r
 server &lt;- function(input, output) { 
-  
-* output$gapminder_plot &lt;- renderPlot({
-*  
-*   gapminder_data &lt;- gapminder
-*  
-*   ggplot(
-*     data = gapminder_data,
-*     aes(x = gdpPercap, y = lifeExp, size = pop, color = country)
-*   ) +
-*     geom_point(show.legend = FALSE) +
-*     scale_colour_manual(values = country_colors) +
-*     scale_x_log10()
-* })
+  output$gapminder_plot &lt;- renderPlot({
+
+    gapminder_data &lt;- gapminder
+
+    ggplot(
+      data = gapminder_data,
+      aes(x = year, y = lifeExp, color = country)
+    ) +
+      geom_line(show.legend = FALSE) +
+      scale_colour_manual(values = country_colors)
+  })
 }
 ```
 ---
+
+class:inverse, center, middle
 
 # Inputs
 
 ---
 
-# Inputs widgets:
+# Input widgets:
 
 https://shiny.rstudio.com/gallery/widget-gallery.html:
 
@@ -357,9 +328,12 @@ fluidRow(
 ```
 
 ---
-
+class:inverse, center, middle
 #Interactivity
-Connect the widget to the plot
+
+---
+
+#Connect the widget to the plot
 
 
 ```r
@@ -497,6 +471,8 @@ dashboardBody(
   ...
 ```
 
+avo: extra css?
+
 ---
 
 #Rladies logo
@@ -517,26 +493,113 @@ tags$li(a(href = 'https://rladies.org/',
 
 # Make it move..
 
+Include plotly:
 
 ```r
 library(plotly)
 ```
 
 
+Create a new menu item: 
+
+```r
+menuItem("Moving chart", tabName = "animated_chart", icon = icon("spinner"))
+```
+
+Create a new tab:
+
+```r
+tabItem(
+  tabName = "animated_chart", 
+  h2("Build a motion chart"),
+  plotlyOutput("animated_gapminder_plot")
+)
+```
+
+Create the plot:
+
+```r
+output$animated_plot &lt;- renderPlotly({
+    
+    gapminder_data &lt;- gapminder %&gt;% 
+      filter(year &gt;= input$year_limits[1] &amp; year &lt;= input$year_limits[2])
+    
+*   p &lt;- ggplot(
+*     data = gapminder_data,
+*     aes(x = gdpPercap, y = lifeExp, size = pop, color = continent, frame = year)
+*   ) +
+*     geom_point(show.legend = FALSE) +
+*     scale_colour_manual(values = continent_colors) +
+      scale_x_log10()
+    
+    ggplotly(p)
+  })
+```
 
 
 ---
-
-
-# Use action button to change tab?
-
-lnd: example code
+class:inverse, center, middle
+#Some extras
 
 ---
 
-# ColourInput?
+# ColourInput
 
-avo: fill in code here
+
+```r
+install.packages('colourpicker')
+```
+
+
+ui inside box:
+
+```r
+*colourInput(inputId="colour", label="Point colour", value = "#88398a")
+```
+
+server inside renderPlot:
+
+```r
+ggplot( 
+      data = gapminder_data,  
+*     aes(x = gdpPercap, y = lifeExp, size = input$point_size)
+    ) + 
+*     geom_point(col=input$colour) +
+*     #scale_colour_manual(values = country_colors) +
+      scale_x_log10() +
+      ggtitle(input$plot_title)
+```
+
+
+---
+# Actionbuttons can do lot's of things - add one to change the tab
+
+
+```r
+actionButton(
+  inputId = 'animate_button', 
+  label = 'Animate this selection'
+  )
+```
+
+
+```r
+observeEvent(input$animate_button, {
+    updateTabItems(session, 'menu', 'animated_chart')
+  })
+```
+
+
+
+```r
+server &lt;- function(input, output, session) { 
+```
+
+
+
+```r
+sidebarMenu(id = 'menu', 
+```
 
 ---
 
