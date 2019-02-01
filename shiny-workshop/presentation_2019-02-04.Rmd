@@ -368,6 +368,7 @@ ggplot(
 
 
 # Make it pretty using CSS
+Cascading Style Sheets - the "makeup" of your app
 
 Create a new file custom.css under www:
 ```{css}
@@ -384,19 +385,35 @@ dashboardBody(
   ...
 ```
 
-avo: extra css?
+Advanced css: download the Rladies stylesheet we made for you from
+
+https://github.com/rladies/meetup-presentations_oslo/tree/master/shiny-workshop/workshop_dashboard/www
+
+```{r, eval = F}
+includeCSS("www/rladies_stylesheet.css"), #<<
+
+```
+
+
 
 ---
 
 #Rladies logo
 
-After title..
+Download the logo from
+
+https://github.com/rladies/meetup-presentations_oslo/tree/master/shiny-workshop/workshop_dashboard/www
+
+into your app's www folder and add code.
+
+After dashboard title:
 ```{r}
-tags$li(a(href = 'https://rladies.org/',
-          img(src = 'logo.png',
-              title = "Rladies Home", height = "30px"),
-          style = "padding-top:10px; padding-bottom:10px;"),
-        class = "dropdown")
+dashboardHeader(title = "Supercool shiny app",
+tags$li(a(href = 'https://rladies.org/', #<<
+          img(src = 'logo.png',#<<
+              title = "Rladies Home", height = "30px"),#<<
+          style = "padding-top:10px; padding-bottom:10px;"),#<<
+        class = "dropdown")#<<
 ```
 
 
@@ -447,7 +464,7 @@ output$animated_plot <- renderPlotly({
 
 ---
 class:inverse, center, middle
-#Some extras
+#Some cool extras
 
 ---
 
@@ -504,9 +521,24 @@ sidebarMenu(id = 'menu',
 
 ---
 
-# What next?
+# What next - Shiny in production
 
-avo: How to deploy your app? shinyapps.io
+- Reactivity: next topic to learn
+
+- Responsivity: 
+  + Done for you
+  + App scales size on any gadget (short demo)
+
+- Scaling to many users: 
+  + Shinyloadtest - testing synthetic load of many users
+  + Profvis - what part of code is slow
+  + Keynote talk by Joe Cheng @ rstudioconf:2019:
+  https://resources.rstudio.com/rstudio-conf-2019/shiny-in-production-principles-practices-and-tools-joe-cheng
+
+- Deployment: 
+  + shiny server 
+  + shinyapps.io
+  + RstudioConnect 
 
 ---
 
