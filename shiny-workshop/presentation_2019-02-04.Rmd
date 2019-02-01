@@ -101,14 +101,14 @@ ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Supercool shiny app"),
   dashboardSidebar(
     sidebarMenu(#<<
-      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group")),#<<
-      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar"))#<<
+      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar")),#<<
+      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group"))#<<
     )#<<
   ),
   dashboardBody(
     tabItems(#<<
-      tabItem(tabName = "interactive_plot", h2("Interactive plot")),#<<
-      tabItem(tabName = "interactive_table", h2("Build an interactive table"))#<<
+      tabItem(tabName = "interactive_table", h2("Build an interactive table")),#<<
+      tabItem(tabName = "interactive_plot", h2("Interactive plot"))#<<
     )#<<
   )
 )
@@ -168,20 +168,25 @@ gapminder %>%
 
 # Data table
 
+Include the DT package:
 ```{r}
-library(DT)
+library(DT)#<<
 ```
 
 
+Add output to ui in the interactive_table tab:
 ```{r}
- DT::dataTableOutput(outputId = "gapminder_table")
+tabItem(tabName = "interactive_table", h2("Build an interactive table"),
+        DT::dataTableOutput(outputId = "gapminder_table") #<<
+)
 ```
 
+Create the table on the server side:
 ```{r}
-output$gapminder_table <- DT::renderDataTable(DT::datatable(
-    data = gapminder, 
-    filter = ('top')
-  ))
+output$gapminder_table <- DT::renderDataTable(DT::datatable(#<<
+    data = gapminder, #<<
+    filter = ('top')#<<
+  ))#<<
 ```
 
 
@@ -206,17 +211,13 @@ Server:
 
 ```{r}
 server <- function(input, output) { 
-  output$gapminder_plot <- renderPlot({
+  output$gapminder_plot <- renderPlot({#<<
+    gapminder_data <- gapminder#<<
 
-    gapminder_data <- gapminder
-
-    ggplot(
-      data = gapminder_data,
-      aes(x = year, y = lifeExp, color = country)
-    ) +
-      geom_line(show.legend = FALSE) +
-      scale_colour_manual(values = country_colors)
-  })
+    ggplot(data = gapminder_data, aes(x = year, y = lifeExp, color = country)) +#<<
+      geom_line(show.legend = FALSE) +#<<
+      scale_colour_manual(values = country_colors)#<<
+  })#<<
 }
 ```
 ---
