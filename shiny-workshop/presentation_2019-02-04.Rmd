@@ -10,6 +10,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      highlightSpans: true
 ---
 
 ```{r setup, include=FALSE}
@@ -18,17 +19,16 @@ knitr::opts_chunk$set(eval = FALSE)
 ```
 
 # What is shiny?
-
-
 ![](presentation_images/shiny_gallery.png)
+https://shiny.rstudio.com
 
 ---
 
 
 
-#Setup:
+#Setup
 
-If you don't already have the packages:
+We need these packages:
 
 ```{r, eval = F}
 install.packages('shiny')
@@ -57,6 +57,8 @@ We will use the upper file structure:
 - https://rstudio.github.io/shinydashboard/get_started.html or
 - https://github.com/rladies/meetup-presentations_oslo -> shiny-workshop/starter_kit
 
+--
+
 ```{r, eval = F}
 library(shiny)
 library(shinydashboard)
@@ -77,7 +79,11 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
+
+
 ---
+
+
 
 # Title and color
 
@@ -120,34 +126,80 @@ Icons: https://shiny.rstudio.com/reference/shiny/0.14/icon.html
 
 ---
 
+class:inverse, center, middle
 
-# Two parts: ui and server
+# Reactivity = magic?
 
-lnd: fill in more here
+---
+
+# Connect ui and server
 
 .pull-left[
-ui: “renders” HTML
-- Input from widgets
-- Output from server
-  ]
+```{r}
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+```
+ui: “render” HTML
+- Use widgets to create input
+- Show output such as text, plots..
+]
+
 
 .pull-right[
-server: runs R code
-- use inputs from ui
-- create outputs using R code
-  ]
-
-
-<img src="presentation_images/interactivity.png" style="width: 80%" />
-
+```{r}
+server <- function(input, output) {
+  
+  
+  
+  
+}
+```
+server: run R code
+]
 
 
 ---
 
-class:inverse, center, middle
+# Connect ui and server
 
-# Outputs
+.pull-left[
+```{r}
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody(
+    selectInput(`"input_name"`),
+    plotOutput(`"output_name"`)
+  )
+)
+```
+]
 
+
+.pull-right[
+```{r}
+server <- function(`input`, `output`) {
+  
+  `output$output_name` <- renderPlot({
+    #' use `input$input_name` 
+    #' to make plot
+  })
+}
+```
+
+]
+
+---
+
+# Connect ui and server
+
+![](presentation_images/interactivity.png)
+
+
+https://shiny.rstudio.com/articles/reactivity-overview.html
 
 ---
 
@@ -165,31 +217,44 @@ gapminder %>%
 
 ---
 
+# First output: Data table
 
-# Data table
 
+![](presentation_images/interactivity_datatable.PNG)
+
+---
+
+# First output: Data table
+
+Use the package DT for this table:
 ```{r}
-library(DT)
+library(DT) #<<
 ```
 
 
+UI:
 ```{r}
- DT::dataTableOutput(outputId = "gapminder_table")
+tabItem(tabName = "interactive_table", h2("Interactive table"),
+  DT::dataTableOutput(outputId = "gapminder_table") #<<
+)
 ```
 
+Server:
 ```{r}
-output$gapminder_table <- DT::renderDataTable(DT::datatable(
-    data = gapminder, 
-    filter = ('top')
-  ))
+server <- function(input, output) { 
+  output$gapminder_table <- DT::renderDataTable(DT::datatable(#<<
+    data = gapminder, #<<
+    filter = ('top')#<<
+  ))#<<
+}
 ```
 
 
 ---
 
-
-
 # Create the plot
+
+![](presentation_images/reactivity_plot_half.PNG)
 
 
 UI:
@@ -221,17 +286,19 @@ server <- function(input, output) {
 ```
 ---
 
-class:inverse, center, middle
+# Interaction with the plot
 
-# Inputs
+![](presentation_images/reactivity_plot.PNG)
 
 ---
 
+
 # Input widgets:
 
-https://shiny.rstudio.com/gallery/widget-gallery.html:
+![](presentation_images/widgets.PNG)
 
-![](presentation_images/numeric_input.png)
+https://shiny.rstudio.com/gallery/widget-gallery.html
+
 
 ---
 
@@ -250,10 +317,7 @@ fluidRow(
 ```
 
 ---
-class:inverse, center, middle
-#Interactivity
 
----
 
 #Connect the widget to the plot
 
@@ -322,7 +386,7 @@ gapminder_data <- gapminder %>%
 ---
 
 
-# Exercise: create a numeric input box to set the point size
+# Exercise: create a numeric input widget to set the point size
 
 - inputId = "point_size"
 - label = "Point size"
@@ -523,7 +587,7 @@ sidebarMenu(id = 'menu', #<<
 
 # What next - Shiny in production
 
-- Reactivity: next topic to learn
+- Control reactivity: next topic to learn
 
 - Responsivity: 
   + Done for you
@@ -544,6 +608,7 @@ sidebarMenu(id = 'menu', #<<
 
 # Resources
 
+- These slides and app in in https://github.com/rladies/meetup-presentations_oslo
 - https://shiny.rstudio.com
 - https://rstudio.github.io/shinydashboard/
 
