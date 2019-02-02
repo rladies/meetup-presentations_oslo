@@ -24,6 +24,19 @@ https://shiny.rstudio.com
 
 ---
 
+# Plan for today:
+
+- Step-by-step creation of a shiny dashboard
+- A little bit on how shiny works
+- Some nice extra features
+
+Code instructions:
+```{r}
+# This is code you need to add #<<
+```
+
+
+---
 
 
 #Setup
@@ -107,14 +120,14 @@ ui <- dashboardPage(skin = "purple",
   dashboardHeader(title = "Supercool shiny app"),
   dashboardSidebar(
     sidebarMenu(#<<
-      menuItem("Plot", tabName = "interactive_plot", icon=icon("object-group")),#<<
-      menuItem("Table", tabName = "interactive_table", icon=icon("chart-bar"))#<<
+       menuItem("Table", tabName = "table_tab", icon=icon("chart-bar")),#<<
+      menuItem("Plot", tabName = "plot_tab", icon=icon("object-group"))#<<
     )#<<
   ),
   dashboardBody(
     tabItems(#<<
-      tabItem(tabName = "interactive_plot", h2("Interactive plot")),#<<
-      tabItem(tabName = "interactive_table", h2("Build an interactive table"))#<<
+      tabItem(tabName = "table_tab", h2("Data table")),#<<
+      tabItem(tabName = "plot_tab", h2("First plot"))#<<
     )#<<
   )
 )
@@ -226,23 +239,24 @@ gapminder %>%
 
 # First output: Data table
 
-Use the package DT for this table:
+
 ```{r}
+library(gapminder) #<<
 library(DT) #<<
 ```
 
 
-UI:
+Add the output object under the tab in the ui
 ```{r}
-tabItem(tabName = "interactive_table", h2("Interactive table"),
-  DT::dataTableOutput(outputId = "gapminder_table") #<<
+tabItem(tabName = "table_tab", h2("Data table"),
+  dataTableOutput(outputId = "gapminder_table") #<<
 )
 ```
 
-Server:
+Create the table on the server side
 ```{r}
 server <- function(input, output) { 
-  output$gapminder_table <- DT::renderDataTable(DT::datatable(#<<
+  output$gapminder_table <- renderDataTable(datatable(#<<
     data = gapminder, #<<
     filter = ('top')#<<
   ))#<<
@@ -252,41 +266,43 @@ server <- function(input, output) {
 
 ---
 
-# Create the plot
+# Plots: renderPlot and plotOutput
+
 
 ![](presentation_images/reactivity_plot_half.PNG)
 
+---
 
-UI:
+# Plots: renderPlot and plotOutput
 
 ```{r}
-tabItem(tabName = "interactive_plot", h2("Interactive plot"),
+library(tidyverse) #<<
+```
+
+Create a row and a box and a plotOutput in the UI
+```{r}
+tabItem(tabName = "plot_tab", h2("First plot"),
         fluidRow(#<<
           box(plotOutput("gapminder_plot"))#<<
         )#<<
 )
 ```
 
-Server:
-
+Generate the plot on the server side
 ```{r}
 server <- function(input, output) { 
-  output$gapminder_plot <- renderPlot({
-
-    gapminder_data <- gapminder
-
-    ggplot(
-      data = gapminder_data,
-      aes(x = year, y = lifeExp, color = country)
-    ) +
-      geom_line(show.legend = FALSE) +
-      scale_colour_manual(values = country_colors)
-  })
+  output$gapminder_plot <- renderPlot({ #<<
+    ggplot(data = gapminder, aes(x = year, y = lifeExp, color = country)) +#<<
+      geom_line() +#<<
+      geom_point() + #<<
+      scale_colour_manual(values = country_colors) +#<< 
+      theme(legend.position="none")#<<
+  })#<<
 }
 ```
 ---
 
-# Interaction with the plot
+# Use widgets to interact with the plot
 
 ![](presentation_images/reactivity_plot.PNG)
 
@@ -302,8 +318,9 @@ https://shiny.rstudio.com/gallery/widget-gallery.html
 
 ---
 
-# TextInput widget
+# First widget: TextInput
 
+Add another box for the widgets
 ```{r}
 fluidRow(
   box(#<<
@@ -319,22 +336,18 @@ fluidRow(
 ---
 
 
-#Connect the widget to the plot
+# First widget: TextInput
 
+Connect the widget to the plot on the server side
 ```{r}
 server <- function(input, output) { 
   
   output$gapminder_plot <- renderPlot({ 
-     
-    gapminder_data <- gapminder 
-     
-    ggplot( 
-      data = gapminder_data,  
-      aes(x = gdpPercap, y = lifeExp, size = pop, color = country) 
-    ) + 
-      geom_point(show.legend = FALSE) + 
-      scale_colour_manual(values = country_colors) + 
-      scale_x_log10() +
+    ggplot( data = gapminder, aes(x = year, y = lifeExp, color = country)) + 
+      geom_line() + 
+      geom_point() +
+      scale_colour_manual(values = country_colors) +        
+      theme(legend.position="none") +
       ggtitle(input$plot_title) #<<
   }) 
 }
@@ -346,7 +359,7 @@ server <- function(input, output) {
 # Filter the data using a sliderInput
 
 
-ui inside box:
+Add the widget in the same box
 ```{r}
 sliderInput(inputId = "year_limits", label = "Select years", #<<
             min = min(gapminder$year), max = max(gapminder$year),#<<
@@ -355,9 +368,10 @@ sliderInput(inputId = "year_limits", label = "Select years", #<<
 
 ```
 
-Server inside renderPlot:
+Add a filter inside renderPlot on the server side
 ```{r}
-gapminder_data <- gapminder %>% 
+#remember to rename from gapminder to gapminder_data in the plot
+gapminder_data <- gapminder %>% #<<
   filter(year >= input$year_limits[1] & year <= input$year_limits[2]) #<<
 ```
 
@@ -365,7 +379,7 @@ gapminder_data <- gapminder %>%
 
 # Use selectInput widget to pick continents
 
-ui inside box:
+Add another widget in the same box
 ```{r}
 selectInput(inputId = "continents", label = "Continents",#<<
             choices = levels(gapminder$continent),#<<
@@ -374,7 +388,7 @@ selectInput(inputId = "continents", label = "Continents",#<<
 
 ```
 
-Server inside renderPlot:
+And connect it on the server
 ```{r}
 gapminder_data <- gapminder %>% 
   filter(
@@ -407,22 +421,23 @@ server inside renderPlot:
 
 # Exercise: create a numeric input widget to set the point size
 
-ui inside box:
+The widget goes in the ui
 ```{r}
 numericInput(inputId = "point_size", label = "Point size", value = 2, min = 1) #<<
 ```
 
 
-server inside renderPlot:
+The input$point_size goes into renderPlot
 ```{r}
-ggplot( 
-      data = gapminder_data,  
-      aes(x = gdpPercap, y = lifeExp, size = input$point_size, color = country) #<<
-    ) + 
-      geom_point(show.legend = FALSE) + 
-      scale_colour_manual(values = country_colors) + 
-      scale_x_log10() +
-      ggtitle(input$plot_title)
+ggplot(
+  data = gapminder_data, 
+  aes(x = year, y = lifeExp, color = country)
+) + 
+  geom_line() + 
+  geom_point(size = input$point_size) + #<<
+  scale_colour_manual(values = country_colors) +        
+  theme(legend.position="none") +
+  ggtitle(input$plot_title)
 ```
 
 ---
@@ -445,8 +460,7 @@ Create a new file custom.css under www:
 Include it in your app under dashboardBody
 ```{r, eval = F}
 dashboardBody(
-  includeCSS("www/custom.css"),
-  ...
+  includeCSS("www/custom.css"), #<<
 ```
 
 Advanced css: download the Rladies stylesheet we made for you from
@@ -472,56 +486,61 @@ into your app's www folder and add code.
 
 After dashboard title:
 ```{r}
-dashboardHeader(title = "Supercool shiny app",
-tags$li(a(href = 'https://rladies.org/', #<<
-          img(src = 'logo.png',#<<
-              title = "Rladies Home", height = "30px"),#<<
-          style = "padding-top:10px; padding-bottom:10px;"),#<<
-        class = "dropdown")#<<
+dashboardHeader(title = "Supercool shiny app",#<<
+  tags$li(a(href = 'https://rladies.org/',#<<
+            img(src = 'logo.png',#<<
+                title = "Rladies Home", height = "30px"),#<<
+            style = "padding-top:10px; padding-bottom:10px;"),#<<
+          class = "dropdown"))#<<
 ```
 
 
 ---
 
 
-# Make it move..
+# Use plotly for animation
 
-Include plotly:
+Include plotly
 ```{r}
-library(plotly)
+library(plotly) #<<
 ```
 
-
-Create a new menu item: 
+Create a new menu item 
 ```{r}
-menuItem("Moving chart", tabName = "animated_chart", icon = icon("spinner")) 
+menuItem("Animated chart", tabName = "animated_tab", icon = icon("spinner")) #<<
 ```
 
-Create a new tab:
+Create a new tab
 ```{r}
-tabItem(
-  tabName = "animated_chart", 
-  h2("Build a motion chart"),
-  plotlyOutput("animated_gapminder_plot")
-)
+tabItem(#<<
+        tabName = "animated_tab", #<<
+        h2("The best stats you've ever seen"),#<<
+        box(#<<
+          plotlyOutput("animated_plot")#<<
+        )#<<
+      )#<<
 ```
-
+---
+# Use plotly for animation
 Create the plot:
 ```{r}
-output$animated_plot <- renderPlotly({
+output$animated_plot <- renderPlotly({#<<
     
     gapminder_data <- gapminder %>% 
-      filter(year >= input$year_limits[1] & year <= input$year_limits[2])
+      filter(
+        year >= input$year_limits[1] & year <= input$year_limits[2],
+        continent %in% input$continents 
+      )
     
     p <- ggplot(#<<
       data = gapminder_data, #<<
-      aes(x = gdpPercap, y = lifeExp, size = pop, color = continent, frame = year)#<<
+      aes(x = gdpPercap, y = lifeExp, color = country, frame = year)#<<
     ) + #<<
-      geom_point(show.legend = FALSE) + #<<
-      scale_colour_manual(values = continent_colors) + #<<
-      scale_x_log10()
+      geom_point() + #<<
+      scale_colour_manual(values = country_colors) + #<<
+      theme(legend.position="none")#<<
     
-    ggplotly(p)
+    ggplotly(p)#<<
   })
 ```
 
@@ -532,10 +551,47 @@ class:inverse, center, middle
 
 ---
 
+# Actionbuttons can do lot's of things for example change tabs
+
+Add button under the widgets in the lot tab
+```{r}
+actionButton(#<<
+  inputId = 'animate_button', #<<
+  label = 'Animate this selection'#<<
+  )#<<
+```
+
+Special: To change tabs we need to name the menu
+```{r}
+sidebarMenu(id = 'menu',...) #<<
+```
+
+---
+
+# Actionbuttons can do lot's of things for example change tabs
+
+
+Use **observeEvent** to listen to the button
+```{r}
+observeEvent(input$animate_button, { #<<
+    updateTabItems(session, 'menu', 'animated_tab')#<<
+  })#<<
+```
+
+Special: add **session** to the server arguments
+```{r}
+server <- function(input, output, session) { }#<<
+```
+
+
+
+---
+
 # ColourInput
 
 ```{r}
-install.packages('colourpicker')
+#install.packages('colourpicker')
+library(colourpicker) #<<
 ```
 
 
@@ -546,44 +602,20 @@ colourInput(inputId="colour", label="Point colour", value = "#88398a") #<<
 
 server inside renderPlot:
 ```{r}
-ggplot( 
-      data = gapminder_data,  
-      aes(x = gdpPercap, y = lifeExp, size = input$point_size) #<<
-    ) + 
-      geom_point(col=input$colour) + #<<
-      #scale_colour_manual(values = country_colors) + #<<
-      scale_x_log10() +
+ggplot(
+      data = gapminder_data, 
+      aes(x = year, y = lifeExp, color = country)
+    ) +
+      geom_line() +
+      geom_point(size = input$point_size, color = input$colour) + #<<
+      scale_colour_manual(values = country_colors) +
+      theme(legend.position="none") +
       ggtitle(input$plot_title)
 ```
 
 
 ---
-# Actionbuttons can do lot's of things - add one to change the tab
 
-```{r}
-actionButton(#<<
-  inputId = 'animate_button', #<<
-  label = 'Animate this selection'#<<
-  )#<<
-```
-
-```{r}
-observeEvent(input$animate_button, { #<<
-    updateTabItems(session, 'menu', 'animated_chart')#<<
-  })#<<
-```
-
-
-```{r}
-server <- function(input, output, session) { #<<
-```
-
-
-```{r}
-sidebarMenu(id = 'menu', #<<
-```
-
----
 
 # What next - Shiny in production
 
@@ -603,15 +635,6 @@ sidebarMenu(id = 'menu', #<<
   + shiny server 
   + shinyapps.io
   + RstudioConnect 
-
----
-
-# Resources
-
-- These slides and app in in https://github.com/rladies/meetup-presentations_oslo
-- https://shiny.rstudio.com
-- https://rstudio.github.io/shinydashboard/
-
 
 ---
 
