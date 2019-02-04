@@ -650,7 +650,7 @@ class:inverse, center, middle
 
 # Actionbuttons can do lot's of things for example change tabs
 
-Add button under the widgets in the lot tab
+Add button under the widgets in the plot tab
 
 ```r
 *actionButton(
@@ -670,7 +670,7 @@ Special: To change tabs we need to name the menu
 # Actionbuttons can do lot's of things for example change tabs
 
 
-Use **observeEvent** to listen to the button
+Inside server: use **observeEvent** to listen to the button
 
 ```r
 *observeEvent(input$animate_button, {
@@ -736,9 +736,12 @@ ggplot(
   https://resources.rstudio.com/rstudio-conf-2019/shiny-in-production-principles-practices-and-tools-joe-cheng
 
 - Deployment: 
-  + shiny server 
-  + shinyapps.io
-  + RstudioConnect 
+  + shiny server: https://www.rstudio.com/products/shiny/shiny-server/ 
+  + shinyapps.io: https://shiny.rstudio.com/articles/shinyapps.html 
+  + RstudioConnect: https://www.rstudio.com/products/connect/ 
+  
+
+  
 
 ---
 
