@@ -1,135 +1,120 @@
-## app.R ##
+
 library(shiny)
 library(shinydashboard)
-library(colourpicker)
-library(googleVis)
-library(tidyverse)
 library(gapminder)
 library(DT)
+library(tidyverse)
 library(plotly)
+library(colourpicker)
 
-
-ui <- dashboardPage(skin="purple",
+# User interface:
+ui <- dashboardPage(
+  skin = "purple",
   dashboardHeader(title = "Supercool shiny app",
                   tags$li(a(href = 'https://rladies.org/',
                             img(src = 'logo.png',
                                 title = "Rladies Home", height = "30px"),
-                                style = "padding-top:10px; padding-bottom:10px;"),
-                                class = "dropdown")), #end dashboardHeader
-#  dbHeader,
+                            style = "padding-top:10px; padding-bottom:10px;"),
+                          class = "dropdown")), 
   dashboardSidebar(
-    sidebarMenu(
-      menuItem("Interactive table", tabName = "interactive_table", icon=icon("chart-bar")),
-      menuItem("Interactive plot", tabName = "interactive_plot", icon=icon("object-group")),
-      menuItem("Motion chart", tabName = "motion_chart", icon = icon("spinner"))
+    sidebarMenu(id = 'menu',
+                menuItem("Table", tabName = "table_tab", icon=icon("chart-bar")),
+                menuItem("Plot", tabName = "plot_tab", icon=icon("object-group")),
+                menuItem("Animated chart", tabName = "animated_tab", icon = icon("spinner"))
     )
   ),
-  
   dashboardBody(
+    # includeCSS("www/custom.css"),
     includeCSS("www/rladies_stylesheet.css"),
-    
-    ########################################
-    
-     tabItems(
-       tabItem(tabName = "interactive_table", h2("Build an interactive table"),
-               fluidRow(
-                 DT::dataTableOutput("table")
-                 
-               )  #end fluidRow    
-       ),#end tab
-       
-       
-       
-       tabItem(tabName = "interactive_plot", h2("Interactive plot"),
-               fluidRow(
-                 box(
-                   textInput(inputId = "title", label="Title", value = "GDP vs life expectancy"),
-                   numericInput(inputId = "size", label="Point size", value = 2, min = 1),
-                   checkboxInput(inputId = "fit", label="Add line of best fit", FALSE),
-                   colourInput("colour", "Point colour", value = "#88398a"),
-                   selectInput(inputId="continents", label="Continents",
-                               choices = levels(gapminder$continent),
-                               multiple = TRUE,
-                               selected = "Europe"),
-                   sliderInput("years", "Years",
-                               min(gapminder$year), max(gapminder$year),
-                               value = c(1977, 2002))
-                 ),#end box
-                 
-                 box(plotOutput("plot"))#, width = "600px", height = "600px")) 
-                 
-               )#end fluidRow
-               
-       ),#end tab
-       
-       
-
-
-       
-       tabItem(tabName = "motion_chart", 
-               h2("Build a motion chart"),
-               fluidRow( plotlyOutput("motion_chart")
-                         
-                         
-               )#end fluidRow    
-       )#end
-       
-    )#end tabItems
-  )#end dashboardBody
-)#end dashboardPage
-        
-    
-server <- function(input, output) { 
-  
-  
-  output$plot <- renderPlot({
-    data <- subset(gapminder,
-                   continent %in% input$continents &
-                     year >= input$years[1] & year <= input$years[2])
-    
-    
-    p <- ggplot(data, aes(year, lifeExp)) +
-      geom_point(size = input$size, col = input$colour) +
-      scale_x_log10() +
-      ggtitle(input$title) +
-      theme_minimal()    
-    if (input$fit) {
-      p <- p + geom_smooth(method = "lm")
-    }
-    p
-    
-  })
-
-  output$table <- DT::renderDataTable({
-    data <- gapminder
-  })
-  
-  
-  output$motion_chart <- renderPlotly({
-    
-    pp <- gapminder %>%
-      plot_ly(
-        x = ~gdpPercap, 
-        y = ~lifeExp, 
-        size = ~pop, 
-        color = ~continent, 
-        frame = ~year, 
-        text = ~country, 
-        hoverinfo = "text",
-        type = 'scatter',
-        mode = 'markers'
-      ) %>%
-      layout(
-        xaxis = list(
-          type = "log"
+    tabItems(
+      tabItem(tabName = "table_tab", h2("Data table"),
+              dataTableOutput(outputId = "gapminder_table")),
+      tabItem(tabName = "plot_tab", h2("First plot"),
+              fluidRow(
+                box(
+                  textInput(
+                    inputId = "plot_title", 
+                    label = "Select title for plot:", 
+                    value = "GDP vs life expectancy"),
+                  sliderInput(inputId = "year_limits", label = "Select years", 
+                              min = min(gapminder$year), max = max(gapminder$year),
+                              value = c(1977, 2002)
+                  ),
+                  selectInput(inputId = "continents", label = "Continents",
+                              choices = levels(gapminder$continent),
+                              multiple = TRUE,
+                              selected = "Europe"),
+                  numericInput(inputId = "point_size", label = "Point size", value = 2, min = 1),
+                  colourInput(inputId="colour", label="Point colour", value = "#88398a"),
+                  actionButton(#<<
+                    inputId = 'animate_button', #<<
+                    label = 'Animate this selection'#<<
+                  )#<<
+                ),
+                box(plotOutput("gapminder_plot"))
+              )),
+      tabItem(
+        tabName = "animated_tab", 
+        h2("The best stats you've ever seen"),
+        box(
+          plotlyOutput("animated_plot")
         )
       )
-    ggplotly(pp)
-    
+    )
+  )
+)
 
+# R code goes here:
+server <- function(input, output, session) {
+  
+  
+  output$gapminder_table <- renderDataTable(datatable(
+    data = gapminder, 
+    filter = ('top')
+  ))
+  
+  output$gapminder_plot <- renderPlot({ 
+    
+    gapminder_data <- gapminder %>% 
+      filter(
+        year >= input$year_limits[1] & year <= input$year_limits[2],
+        continent %in% input$continents 
+      )
+    
+    ggplot(
+      data = gapminder_data, 
+      aes(x = year, y = lifeExp, color = country)
+    ) +
+      geom_line() +
+      geom_point(size = input$point_size, color = input$colour) +
+      scale_colour_manual(values = country_colors) + 
+      theme(legend.position="none") +
+      ggtitle(input$plot_title)
   })
   
+  output$animated_plot <- renderPlotly({
+    
+    gapminder_data <- gapminder %>% 
+      filter(
+        year >= input$year_limits[1] & year <= input$year_limits[2],
+        continent %in% input$continents 
+      )
+    
+    p <- ggplot(#<<
+      data = gapminder_data, #<<
+      aes(x = gdpPercap, y = lifeExp, color = country, frame = year)#<<
+    ) + #<<
+      geom_point() + #<<
+      scale_colour_manual(values = country_colors) + 
+      theme(legend.position="none")
+    
+    ggplotly(p)
+  })
   
-}#end server function
+  observeEvent(input$animate_button, { #<<
+    updateTabItems(session, 'menu', 'animated_tab')#<<
+  })#<<
+}
 
-shinyApp(ui, server)
+# Run the application 
+shinyApp(ui = ui, server = server)
