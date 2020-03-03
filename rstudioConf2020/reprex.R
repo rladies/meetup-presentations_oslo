@@ -9,7 +9,6 @@ reprex({
 }, outfile = tmp)
 list.files(dirname(tmp), pattern = "foofy")
 
-
 # provide code as an expression
 reprex(rbinom(3, size = 10, prob = 0.5))
 reprex({y <- 1:4; mean(y)})

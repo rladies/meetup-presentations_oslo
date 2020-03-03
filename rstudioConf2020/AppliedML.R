@@ -31,7 +31,9 @@ nrow(mtcars_train)/nrow(mtcars)
 ## EDA
 mtcars_train %>% 
   select_if(is_numeric) %>% 
-  pivot_longer(everything(),names_to = "names", values_to = "values") %>% 
+  pivot_longer(everything(),
+               names_to = "names", 
+               values_to = "values") %>% 
   ggplot(aes(values)) +
   geom_histogram() + 
   facet_wrap(~names, scales="free") 
@@ -42,7 +44,8 @@ mtcars_train %>%
   corrplot(method = "color")
 
 ## Feature Engineering with recipes
-mtcars_rec <- recipe(mpg ~ ., data = mtcars_train) %>%
+mtcars_rec <- recipe(mpg ~ ., 
+                     data = mtcars_train) %>%
   step_normalize(all_predictors()) %>% 
   step_interact(terms = ~ wt:am) %>% 
   prep(verbose = TRUE) 
