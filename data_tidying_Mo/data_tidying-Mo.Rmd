@@ -1,0 +1,473 @@
+---
+title: "Data tidying"
+subtitle: " - with {dplyr} and {tidyr} - "
+author: "Athanasia Mo Mowinckel"
+date: "30.09.2019"
+output:
+  xaringan::moon_reader:
+    css: [default, rladies, rladies-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+class: middle, center
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo=T, warning=FALSE, message=FALSE)
+library(knitr)
+library(tidyverse)
+```
+
+```{r echo=FALSE}
+include_graphics("https://www.oslobrains.no/wp-content/uploads/2017/09/LCBC_wide_compact_full.png")
+```
+
+
+---
+
+.pull-left[
+## My co-workers
+
+```{r "askinghelp", echo=FALSE, out.height="100%"}
+include_graphics("http://weknowmemes.com/wp-content/uploads/2012/02/help-me-obi-wan.jpg")
+```
+]
+
+--
+
+.pull-right[
+
+## Me 
+
+```{r "helping", echo=FALSE, out.height="500px"}
+include_graphics("https://media.makeameme.org/created/no-problem-at.jpg")
+```
+]
+
+---
+class: middle 
+
+.pull-left[
+## Data as you expect
+```{r "tidydata", echo=FALSE, out.height="350px"}
+include_graphics("https://img.huffingtonpost.com/asset/5873b0c21b00008f016e65cf.jpg?ops=scalefit_820_noupscale")
+```
+]
+
+--
+
+.pull-right[
+## Data you get
+```{r "messydata",  echo=FALSE, out.height="350px"}
+include_graphics("https://secure.i.telegraph.co.uk/multimedia/archive/02637/messy-desk_2637008b.jpg")
+```
+]
+
+---
+class: middle, center
+
+```{r "helpme-helpyou", out.height="100%", echo=FALSE}
+include_graphics("http://blog.panorama9.com/wp-content/uploads/2014/12/patch-management-meme.jpg")
+```
+
+---
+
+class: middle, center, inverse
+
+# {dplyr} and {tidyr} 
+# to the rescue
+
+
+---
+
+.pull-left[
+# {dplyr}
+> is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges
+
+```{r echo=FALSE, out.height="300px"}
+include_graphics("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png")
+```
+
+]
+
+.pull-right[
+# {tidyr}
+> is a collection of functions to help you create "tidy" data, i.e. reshaping data structure to fit your needs  
+<br>
+
+```{r echo=FALSE, out.height="300px"}
+include_graphics("https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+```
+]
+
+---
+class: middle, center, inverse
+
+# {tidyr}
+
+```{r echo=FALSE, out.height="300px"}
+include_graphics("https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png")
+```
+
+---
+
+# {tidyr} - to help you create tidy data.
+
+[From the tidyr site](https://tidyr.tidyverse.org/index.html)
+
+--
+
+** Tidy data is data where:** 
+
+- Every column is variable.  
+
+--
+
+- Every row is an observation.  
+
+--
+
+- Every cell is a single value.  
+
+--
+
+### Tidy data describes a standard way of storing data that is used wherever possible throughout the tidyverse. 
+
+---
+
+### Data with values in column headers
+
+.left-column[
+The data set `relig_income` gives us some information about the income levels of households of different religions. 
+
+Notice how the column headers are the income levels, and cell values are the number of households.
+
+]
+
+--
+
+.right-column[
+```{r}
+library(tidyverse)
+relig_income
+```
+]
+
+---
+
+### Data with values in column headers
+
+.left-column[
+We want the income to become its own column, and the frequency to be stored in a seperate column.
+
+]
+
+--
+
+.right-column[
+```{r}
+relig_income %>%
+  gather(income, frequency, -religion)
+```
+]
+
+---
+
+### Data with values in column headers
+
+.left-column[
+The new `pivot_longer` function was recently released with syntax that might be a little more understandable (and memorable!)
+
+]
+
+--
+
+.right-column[
+```{r}
+relig_income %>% 
+  pivot_longer(-religion, names_to = "income", values_to = "frequency")
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+The data set `billboard` gives us some information about top billboard songs vor various time periods. 
+
+Notice how the column headers are numbers of weeks, one per song for the amounts of weeks that song was on the billboards.
+
+]
+
+--
+
+.right-column[
+```{r}
+billboard
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+We want the weeks to become their own column, and the weeks ranking to be stored in a seperate column.
+
+]
+
+--
+
+.right-column[
+```{r}
+billboard %>% 
+  gather(week, rank, starts_with("wk"), na.rm = TRUE)
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+With `pivot_longer` we can also do the same, now with perhaps some more transparent arguments.
+
+]
+
+--
+
+.right-column[
+```{r}
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    values_to = "rank", values_drop_na = TRUE
+  )
+```
+]
+
+---
+### Data with columns of repeated observations
+
+.left-column[
+We can even extent the `pivot_longer` function, so that week becomes an integer immediately. 
+
+The alternative is to use a `mutate` function from {dplyr} after pivoting to do so. 
+]
+
+--
+
+.right-column[
+```{r}
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    names_prefix = "wk", names_ptypes = list(week = integer()),
+    values_to = "rank", values_drop_na = TRUE
+  )
+```
+]
+
+---
+class: middle, center, inverse
+
+# {dplyr}
+
+```{r echo=FALSE, out.height="300px"}
+include_graphics("https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png")
+```
+
+---
+
+# {dplyr} - to alter and add to data
+
+[From the dplyr site](https://dplyr.tidyverse.org/)
+
+- `mutate()` adds new variables that are functions of existing variables.
+
+--
+
+- `select()` picks variables based on their names.  
+
+--
+
+- `filter()` picks cases based on their values.  
+
+--
+
+- `summarise()` reduces multiple values down to a single summary.  
+
+--
+
+- `arrange()` changes the ordering of the rows.  
+
+--
+
+These all combine naturally with `group_by()` which allows you to perform any operation “by group”. 
+
+
+---
+
+### Mutating data
+
+.left-column[
+If we go back to the billboards example we had before, and we don't do the step necessary to make `week` into an integer, we can alter (mutate) week to become an integer in a second step.
+
+`mutate` is handy because you can use information from the data.frame it self to add or alter variables in the data.frame in a row-wise manner.
+
+]
+
+--
+
+.right-column[
+```{r}
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    values_to = "rank", values_drop_na = TRUE
+  ) %>% 
+  mutate(week = parse_number(week))
+```
+]
+
+---
+
+### Mutating data
+
+.left-column[
+
+The main {dplyr} functions also come with variants ending in `_at`, `_if`, `_all`, which allows you to do operations on multiple columns in a single step, as long as you want to do the same with all the selected columns.
+
+For instance we can z-transform all the weekly rankings of all songs in one go.
+]
+
+--
+
+.right-column[
+```{r}
+billboard %>% 
+  mutate_at(vars(starts_with("wk")), scale)
+```
+]
+
+---
+
+### Mutating data
+
+.left-column[
+
+We're going to use the `relig_income` dataset again, and use it in its untidy form, so highlight some cool things you can do with `mutate` and `select` .
+
+Here, we use mutate to add a total row, and use `select_if` to select all numeric columns to create a sum of.
+
+Then, we use `mutate_if` to alter each of the numeric columns, so they become a percentage
+    
+]
+
+--
+
+.right-column[
+```{r}
+relig_income %>% 
+  mutate(total = rowSums(select_if(., is.numeric))) %>% 
+  mutate_if(is.numeric, function(x) (x/.$total)*100 )
+```
+]
+
+---
+
+### Summarising data
+
+.pull-left[
+
+```{r}
+relig_income %>% 
+  pivot_longer(-religion, 
+               names_to = "income", 
+               values_to = "frequency") %>% 
+    group_by(religion) %>% #<<
+  summarise_at(vars(frequency), 
+               list(Mean = mean, 
+                    Min = min, 
+                    Max = max,
+                    Sum = sum))
+```
+
+]
+
+--
+
+.pull-right[
+```{r}
+
+relig_income %>% 
+  pivot_longer(-religion, 
+               names_to = "income", 
+               values_to = "frequency") %>% 
+  group_by(income) %>% #<<
+  summarise_at(vars(frequency), 
+               list(Mean = mean,
+                    Min = min, 
+                    Max = max,
+                    Sum = sum))
+```
+]
+
+---
+
+### Summarising data
+
+```{r}
+billboard %>% 
+  summarise_at(vars(wk1, wk5, wk10, wk20, wk30), 
+               list(Mean = mean, 
+                    Max = min, 
+                    Min = max,
+                    Sum = sum),
+               na.rm = TRUE)
+```
+
+---
+
+### Summarising data
+
+
+```{r}
+billboard %>% 
+  pivot_longer(starts_with("wk"),
+               names_to = "week",
+               values_to = "rank") %>% 
+  mutate(week = parse_number(week)) %>% 
+  summarise_at(vars(rank),
+               list(Mean = mean, Max = min, Min = max),
+               na.rm = TRUE)
+               
+```
+
+---
+
+### Summarising data
+
+
+```{r}
+billboard %>% 
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "rank") %>% 
+  mutate(week = parse_number(week)) %>% 
+  group_by(artist, track) %>% #<<
+  summarise_at(vars(rank),
+               list(Mean = mean, Max = min, Min = max),
+               na.rm = TRUE)
+               
+```
+
+---
+class: inverse, center, middle
+
+# There you go!
+
+### A small intro to tidying data

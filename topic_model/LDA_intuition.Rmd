@@ -1,0 +1,181 @@
+---
+title: "LDA Intuition"
+author: "Isabelle Valette"
+date: "October 22, 2018"
+output: html_document
+---
+
+## How LDA algorithm works?
+
+```{r, echo=FALSE, include=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+Let say that we have the following corpus of 3 documents with 2 topics, one about animal and one about pet.
+
+![Documents about food and pets](food.png)
+
+### 0 - Data Preprocessing
+We start with a fictive corpus of 3 documents where we only look at the lemmas we will need in topic modelling from the verbs and the noun. In Italic is the origin sentence the lemma is extracted from.
+```{r, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+
+rawdocs <- c('eat fish vegetable',   # I eat fish and vegetables
+             'fish pet',             # Fish are pets
+             'kitten eat fish')       # Kitten east fish
+             
+
+# generate a list of lemmas
+docs <- strsplit(rawdocs, split=' ', perl=T) 
+docs
+```
+
+We can see above a list of lemmas per document and below we plot the vocabulary list.
+
+```{r}
+# create a vocabulary list
+vocab <- unique(unlist(docs))
+vocab
+```
+
+We are now ready for the parametrisation steps.
+
+### 1 - Parametrisation
+
+First let's start by setting the parameters for our model: The number of topics, alpha, eta, the number of iterations and the seed for reproducibility.
+
+```{r}
+# number of topics
+K <- 2 
+# dirichlet prior.
+alpha <- 0.001
+# dirichlet prior.
+eta <- 0.05 
+# iterations for collapsed gibbs sampling
+iterations <- 20 
+# set the seed
+set.seed(12345)
+# replace words with wordIDs
+for(i in 1:length(docs)) docs[[i]] <- match(docs[[i]], vocab)
+# Visualize the documents with word ids
+docs
+```
+
+Above, we can see a list of documents where the lemmas have been replaced with their lemma ids.
+
+### 2 - Initialisation
+
+
+```{r}
+# initialize en empty word-topic count matrix.
+wt <- matrix(0, K, length(vocab)) 
+# initialize an empty topic-allocation list ta
+ta <- sapply(docs, function(x) rep(0, length(x)))
+```
+
+Now let's look at the word topic count matrix. The columns are the lemmas and the rows are the topics.
+
+```{r}
+wt
+```
+
+For each word in each document, we allocated a topic, let's look at this per document, per word topic assignment. In this list, the elements of the lists are the documents. Each documents has a length that corresponds to its number of lemmas. The value of each lemma is the topic assignment.
+
+```{r}
+ta
+```
+
+### 3 - Topic Allocation
+
+```{r }
+for(d in 1:length(docs)){ 
+    for(w in 1:length(docs[[d]])){
+      # randomly assign topic to token w
+      ta[[d]][w] <- sample(1:K, 1) 
+      # topic index
+      ti <- ta[[d]][w]
+      # wordID for token w
+      wi <- docs[[d]][w] 
+      # update word-topic count matrix   
+      wt[ti,wi] <- wt[ti,wi]+1   
+  }
+}
+ta 
+wt
+```
+
+Firstly we randomly assigned topics to each word in each document. Then we created a word-topic count matrix wt. This wt matrix will enable us to compute the probability of word w under topic t.
+
+### 4 - Other count matrixes 
+
+```{r}
+dt <- matrix(0, length(docs), K)
+for(d in 1:length(docs)){ 
+    for(t in 1:K){ 
+    dt[d,t] <- sum(ta[[d]]==t) 
+  }
+}
+dt
+```
+
+Now we have generated a document-topic count matrix where the counts correspond to the number of lemmas assigned to each topic for each document. This will enable use to compute the probablity of topic t in document d.
+
+
+### 5 - The magic of the Gibbs sampler 
+
+
+```{r}
+for(i in 1:iterations){ 
+  for(d in 1:length(docs)){ 
+    for(w in 1:length(docs[[d]])){ 
+      
+      t0 <- ta[[d]][w] # initial topic assignment to token w
+      wid <- docs[[d]][w] # wordID of token w
+      
+      dt[d,t0] <- dt[d,t0]-1 
+      wt[t0,wid] <- wt[t0,wid]-1 
+      
+      ## COLLAPSED GIBBS SAMPLING MAGIC
+      denom_a <- sum(dt[d,]) + K * alpha 
+      denom_b <- rowSums(wt) + length(vocab) * eta 
+      p_z <- (wt[,wid] + eta) / denom_b * (dt[d,] + alpha) / denom_a 
+      t1 <- sample(1:K, 1, prob=p_z/sum(p_z)) 
+      
+      ta[[d]][w] <- t1 
+      dt[d,t1] <- dt[d,t1]+1 
+      wt[t1,wid] <- wt[t1,wid]+1 
+    
+      if(t0!=t1) print(paste0('doc:', d, ' token:' ,w, ' topic:',t0,'=>',t1)) 
+    }
+  }
+}
+```
+
+### 6- Visualizing the output of the LDA model
+
+```{r}
+# topic probabilities per word
+b <- t((wt + eta) / (rowSums(wt+eta)))
+beta <- data.frame(term = rep(vocab, 2),
+                  topic = c(rep("topic1", 5), rep("topic2", 5)),
+                  beta = c(b[,1], b[,2]))
+
+beta %>%
+  filter(beta > 0.07) %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+
+# compute topic probabilities per document
+t <- (dt+alpha) / rowSums(dt+alpha)
+theta <- data_frame(document = rep(paste0("doc", 1:3), 2),
+                    topic = c(rep("topic1", 3), rep("topic2", 3)),
+                    theta = c(t[,1], t[,2]))
+theta %>% ggplot(aes(document, theta, fill = factor(topic))) +
+  geom_col(show.legend = TRUE)
+```
+

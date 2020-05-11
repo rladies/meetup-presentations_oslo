@@ -1,0 +1,1272 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.2.25)  25 FEB 2020 23:04
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Vitae_cv_example.tex
+(./Vitae_cv_example.tex
+LaTeX2e <2020-02-02> patch level 3
+L3 programming layer <2020-02-21> (./awesome-cv.cls
+Document Class: awesome-cv 2017/02/05 v1.6.1 Awesome Curriculum Vitae Class
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count163
+\c@section=\count164
+\c@subsection=\count165
+\c@subsubsection=\count166
+\c@paragraph=\count167
+\c@subparagraph=\count168
+\c@figure=\count169
+\c@table=\count170
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen135
+\ar@mcellbox=\box45
+\extrarowheight=\dimen136
+\NC@list=\toks14
+\extratabsurround=\skip49
+\backup@length=\skip50
+\ar@cellbox=\box46
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\enitkv@toks@=\toks15
+\labelindent=\skip51
+\enit@outerparindent=\dimen137
+\enit@toks=\toks16
+\enit@inbox=\box47
+\enit@count@id=\count171
+\enitdp@description=\count172
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2019/07/28 v2.2 ragged2e Package (MS)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/ms/everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip52
+\RaggedLeftLeftskip=\skip53
+\RaggedRightLeftskip=\skip54
+\CenteringRightskip=\skip55
+\RaggedLeftRightskip=\skip56
+\RaggedRightRightskip=\skip57
+\CenteringParfillskip=\skip58
+\RaggedLeftParfillskip=\skip59
+\RaggedRightParfillskip=\skip60
+\JustifyingParfillskip=\skip61
+\CenteringParindent=\skip62
+\RaggedLeftParindent=\skip63
+\RaggedRightParindent=\skip64
+\JustifyingParindent=\skip65
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+))
+\Gm@cnth=\count173
+\Gm@cntv=\count174
+\c@Gm@tempcnt=\count175
+\Gm@bindingoffset=\dimen138
+\Gm@wd@mp=\dimen139
+\Gm@odd@mp=\dimen140
+\Gm@even@mp=\dimen141
+\Gm@layoutwidth=\dimen142
+\Gm@layoutheight=\dimen143
+\Gm@layouthoffset=\dimen144
+\Gm@layoutvoffset=\dimen145
+\Gm@dimlist=\toks18
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip66
+\f@nch@O@elh=\skip67
+\f@nch@O@erh=\skip68
+\f@nch@O@olh=\skip69
+\f@nch@O@orh=\skip70
+\f@nch@O@elf=\skip71
+\f@nch@O@erf=\skip72
+\f@nch@O@olf=\skip73
+\f@nch@O@orf=\skip74
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/xifthen/xifthen.sty
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count176
+\calc@Bcount=\count177
+\calc@Adimen=\dimen146
+\calc@Bdimen=\dimen147
+\calc@Askip=\skip75
+\calc@Bskip=\skip76
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count178
+\calc@Cskip=\skip77
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count179
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.
+sty (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-02-21 L3 programming layer (loader) 
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xdvip
+dfmx.def
+File: l3backend-xdvipdfmx.def 2020-02-23 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count180
+\l__pdf_internal_box=\box48
+\g__pdf_backend_object_int=\count181
+\g__pdf_backend_annotation_int=\count182
+))
+Package: xparse 2020-02-14 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count183
+\g__xparse_grabber_int=\count184
+\l__xparse_m_args_int=\count185
+\l__xparse_v_nesting_int=\count186
+)
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.s
+ty
+Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count187
+\l__fontspec_language_int=\count188
+\l__fontspec_strnum_int=\count189
+\l__fontspec_tmp_int=\count190
+\l__fontspec_tmpa_int=\count191
+\l__fontspec_tmpb_int=\count192
+\l__fontspec_tmpc_int=\count193
+\l__fontspec_em_int=\count194
+\l__fontspec_emdef_int=\count195
+\l__fontspec_strong_int=\count196
+\l__fontspec_strongdef_int=\count197
+\l__fontspec_tmpa_dim=\dimen148
+\l__fontspec_tmpb_dim=\dimen149
+\l__fontspec_tmpc_dim=\dimen150
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math
+.sty
+Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math
+-xetex.sty
+Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3key
+s2e.sty
+Package: l3keys2e 2020-02-14 LaTeX2e option processing using LaTeX3 keys
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip78
+For additional information on amsmath, use the `?' option.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen151
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen152
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count198
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count199
+\leftroot@=\count266
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count267
+\DOTSCASE@=\count268
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box49
+\strutbox@=\box50
+\big@size=\dimen153
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count269
+\c@MaxMatrixCols=\count270
+\dotsspace@=\muskip16
+\c@parentequation=\count271
+\dspbrk@lvl=\count272
+\tag@help=\toks20
+\row@=\count273
+\column@=\count274
+\maxfields@=\count275
+\andhelp@=\toks21
+\eqnshift@=\dimen154
+\alignsep@=\dimen155
+\tagshift@=\dimen156
+\tagwidth@=\dimen157
+\totwidth@=\dimen158
+\lineht@=\dimen159
+\@envbody=\toks22
+\multlinegap=\skip79
+\multlinetaggap=\skip80
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+\g__um_fam_int=\count276
+\g__um_fonts_used_int=\count277
+\l__um_primecount_int=\count278
+\g__um_primekern_muskip=\muskip17
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math
+-table.tex)))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontawesome/fontawesome.s
+ty
+Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontawesome/fontawesomesy
+mbols-generic.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/fontawesome/fontawesomesy
+mbols-xeluatex.tex))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/academicons/academicons.s
+ty
+Package: academicons 2018/06/27 v1.8.6-2 Academicons Icons
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/sourcesansp
+ro.sty
+Package: sourcesanspro 2016/12/03 v2.6 Adobe's Source Sans Pro typeface
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/U
+sers/isavalet/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks24
+\XKV@tempa@toks=\toks25
+)
+\XKV@depth=\count279
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/SourceSansPro(1)/m/n on input line 
+123.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/SourceSansPro(1)/bx/n on input lin
+e 123.
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2019/11/15 version 4.22 text color boxes
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/
+Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-c
+ommon.tex
+\pgfutil@everybye=\toks26
+\pgfutil@tempdima=\dimen160
+\pgfutil@tempdimb=\dimen161
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-c
+ommon-lists.tex))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-l
+atex.def
+\pgfutil@abb=\box51
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.co
+de.tex (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision
+.tex)
+Package: pgfrcs 2020/01/08 v3.1.5b (3.1.5b)
+))
+Package: pgf 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.st
+y (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 105.
+)
+\Gin@req@height=\dimen162
+\Gin@req@width=\dimen163
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.st
+y
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.
+code.tex
+Package: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.c
+ode.tex
+\pgfkeys@pathtoks=\toks27
+\pgfkeys@temptoks=\toks28
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeysfi
+ltered.code.tex
+\pgfkeys@tmptoks=\toks29
+))
+\pgf@x=\dimen164
+\pgf@y=\dimen165
+\pgf@xa=\dimen166
+\pgf@ya=\dimen167
+\pgf@xb=\dimen168
+\pgf@yb=\dimen169
+\pgf@xc=\dimen170
+\pgf@yc=\dimen171
+\pgf@xd=\dimen172
+\pgf@yd=\dimen173
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count280
+\c@pgf@countb=\count281
+\c@pgf@countc=\count282
+\c@pgf@countd=\count283
+\t@pgf@toka=\toks30
+\t@pgf@tokb=\toks31
+\t@pgf@tokc=\toks32
+\pgf@sys@id@count=\count284
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-
+xetex.def
+File: pgfsys-xetex.def 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-
+dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-
+common-pdf.def
+File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
+)
+\pgfsys@objnum=\count285
+)))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyss
+oftpath.code.tex
+File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfsyssoftpath@smallbuffer@items=\count286
+\pgfsyssoftpath@bigbuffer@items=\count287
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysp
+rotocol.code.tex
+File: pgfsysprotocol.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.
+code.tex
+Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.co
+de.tex
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.co
+de.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.
+code.tex
+\pgfmath@dimen=\dimen174
+\pgfmath@count=\count288
+\pgfmath@box=\box52
+\pgfmath@toks=\toks33
+\pgfmath@stack@operand=\toks34
+\pgfmath@stack@operation=\toks35
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.code.tex
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.basic.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.trigonometric.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.random.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.comparison.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.base.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.round.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.misc.code.tex)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.integerarithmetics.code.tex)))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.c
+ode.tex
+\c@pgfmathroundto@lastzeros=\count289
+))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.te
+x)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+oints.code.tex
+File: pgfcorepoints.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@picminx=\dimen175
+\pgf@picmaxx=\dimen176
+\pgf@picminy=\dimen177
+\pgf@picmaxy=\dimen178
+\pgf@pathminx=\dimen179
+\pgf@pathmaxx=\dimen180
+\pgf@pathminy=\dimen181
+\pgf@pathmaxy=\dimen182
+\pgf@xx=\dimen183
+\pgf@xy=\dimen184
+\pgf@yx=\dimen185
+\pgf@yy=\dimen186
+\pgf@zx=\dimen187
+\pgf@zy=\dimen188
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@path@lastx=\dimen189
+\pgf@path@lasty=\dimen190
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athusage.code.tex
+File: pgfcorepathusage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@shorten@end@additional=\dimen191
+\pgf@shorten@start@additional=\dimen192
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcores
+copes.code.tex
+File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfpic=\box53
+\pgf@hbox=\box54
+\pgf@layerbox@main=\box55
+\pgf@picture@serial@count=\count290
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreg
+raphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgflinewidth=\dimen193
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoret
+ransformations.code.tex
+File: pgfcoretransformations.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@pt@x=\dimen194
+\pgf@pt@y=\dimen195
+\pgf@pt@temp=\dimen196
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreq
+uick.code.tex
+File: pgfcorequick.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreo
+bjects.code.tex
+File: pgfcoreobjects.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorea
+rrows.code.tex
+File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfarrowsep=\dimen197
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcores
+hade.code.tex
+File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@max=\dimen198
+\pgf@sys@shading@range@num=\count291
+\pgf@shadingcount=\count292
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorei
+mage.code.tex
+File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoree
+xternal.code.tex
+File: pgfcoreexternal.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfexternal@startupbox=\box56
+))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorel
+ayers.code.tex
+File: pgfcorelayers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoret
+ransparency.code.tex
+File: pgfcoretransparency.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+atterns.code.tex
+File: pgfcorepatterns.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorer
+df.code.tex
+File: pgfcorerdf.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulesh
+apes.code.tex
+File: pgfmoduleshapes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfnodeparttextbox=\box57
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulepl
+ot.code.tex
+File: pgfmoduleplot.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp
+-version-0-65.sty
+Package: pgfcomp-version-0-65 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@nodesepstart=\dimen199
+\pgf@nodesepend=\dimen256
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp
+-version-1-18.sty
+Package: pgfcomp-version-1-18 2020/01/08 v3.1.5b (3.1.5b)
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks36
+\verbatim@line=\toks37
+\verbatim@in@stream=\read3
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box58
+\tcb@upperbox=\box59
+\tcb@lowerbox=\box60
+\tcb@phantombox=\box61
+\c@tcbbreakpart=\count293
+\c@tcblayer=\count294
+\tcolorbox@number=\count295
+\tcb@temp=\box62
+\tcb@temp=\box63
+\tcb@temp=\box64
+\tcb@temp=\box65
+\tcb@out=\write4
+\tcb@record@out=\write5
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins.code.t
+ex
+Library (tcolorbox): 'tcbskins.code.tex' version '4.22'
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.st
+y (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.st
+y
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.c
+ode.tex)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmat
+h.sty
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.co
+de.tex
+Package: pgffor 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex)
+\pgffor@iter=\dimen257
+\pgffor@skip=\dimen258
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
+))
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/
+tikz.code.tex
+Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibrar
+yplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgf@plot@mark@count=\count296
+\pgfplotmarksize=\dimen259
+)
+\tikz@lastx=\dimen260
+\tikz@lasty=\dimen261
+\tikz@lastxsaved=\dimen262
+\tikz@lastysaved=\dimen263
+\tikz@lastmovetox=\dimen264
+\tikz@lastmovetoy=\dimen265
+\tikzleveldistance=\dimen266
+\tikzsiblingdistance=\dimen267
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count297
+\tikznumberofchildren=\count298
+\tikznumberofcurrentchild=\count299
+\tikz@fig@count=\count300
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulema
+trix.code.tex
+File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+\pgfmatrixcurrentrow=\count301
+\pgfmatrixcurrentcolumn=\count302
+\pgf@matrix@numberofcolumns=\count303
+)
+\tikz@expandcount=\count304
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/
+libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)))
+\tcb@waterbox=\box70
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.
+code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.22'
+))) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2020-01-22 v2.0d non-zero parskip adjustments
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefineke
+ys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.s
+ty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen268
+\Hy@linkcounter=\count305
+\Hy@pagecounter=\count306
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count307
+Package hyperref Info: Option `unicode' set `true' on input line 4421.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4547.
+Package hyperref Info: Link nesting OFF on input line 4552.
+Package hyperref Info: Hyper index ON on input line 4555.
+Package hyperref Info: Plain pages OFF on input line 4562.
+Package hyperref Info: Backreferencing OFF on input line 4567.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4800.
+\c@Hy@tempcnt=\count308
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5159.
+\XeTeXLinkMargin=\dimen269
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.s
+ty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count309
+\Field@Width=\dimen270
+\Fld@charsize=\dimen271
+Package hyperref Info: Hyper figures OFF on input line 6430.
+Package hyperref Info: Link nesting OFF on input line 6435.
+Package hyperref Info: Hyper index ON on input line 6438.
+Package hyperref Info: backreferencing OFF on input line 6445.
+Package hyperref Info: Link coloring OFF on input line 6450.
+Package hyperref Info: Link coloring with OCG OFF on input line 6455.
+Package hyperref Info: PDF/A mode OFF on input line 6460.
+LaTeX Info: Redefining \ref on input line 6500.
+LaTeX Info: Redefining \pageref on input line 6504.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count310
+\c@Item=\count311
+\c@Hfootnote=\count312
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2020/01/14 v7.00d Hyperref driver for XeTeX
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box71
+\c@Hy@AnnotLevel=\count313
+\HyField@AnnotCount=\count314
+\Fld@listcount=\count315
+\c@bookmark@seq@number=\count316
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilec
+heck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecou
+nter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip81
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen272
+\lightrulewidth=\dimen273
+\cmidrulewidth=\dimen274
+\belowrulesep=\dimen275
+\belowbottomsep=\dimen276
+\aboverulesep=\dimen277
+\abovetopsep=\dimen278
+\cmidrulesep=\dimen279
+\cmidrulekern=\dimen280
+\defaultaddspace=\dimen281
+\@cmidla=\count317
+\@cmidlb=\count318
+\@aboverulesep=\dimen282
+\@belowrulesep=\dimen283
+\@thisruleclass=\count319
+\@lastruleclass=\count320
+\@thisrulewidth=\dimen284
+) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count321
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count322
+\c@listtotal=\count323
+\c@listcount=\count324
+\c@liststart=\count325
+\c@liststop=\count326
+\c@citecount=\count327
+\c@citetotal=\count328
+\c@multicitecount=\count329
+\c@multicitetotal=\count330
+\c@instcount=\count331
+\c@maxnames=\count332
+\c@minnames=\count333
+\c@maxitems=\count334
+\c@minitems=\count335
+\c@citecounter=\count336
+\c@maxcitecounter=\count337
+\c@savedcitecounter=\count338
+\c@uniquelist=\count339
+\c@uniquename=\count340
+\c@refsection=\count341
+\c@refsegment=\count342
+\c@maxextratitle=\count343
+\c@maxextratitleyear=\count344
+\c@maxextraname=\count345
+\c@maxextradate=\count346
+\c@maxextraalpha=\count347
+\c@abbrvpenalty=\count348
+\c@highnamepenalty=\count349
+\c@lownamepenalty=\count350
+\c@maxparens=\count351
+\c@parenlevel=\count352
+\blx@tempcnta=\count353
+\blx@tempcntb=\count354
+\blx@tempcntc=\count355
+\blx@maxsection=\count356
+\blx@maxsegment@0=\count357
+\blx@notetype=\count358
+\blx@parenlevel@text=\count359
+\blx@parenlevel@foot=\count360
+\blx@sectionciteorder@0=\count361
+\blx@entrysetcounter=\count362
+\labelnumberwidth=\skip82
+\labelalphawidth=\skip83
+\biblabelsep=\skip84
+\bibitemsep=\skip85
+\bibnamesep=\skip86
+\bibinitsep=\skip87
+\bibparsep=\skip88
+\bibhang=\skip89
+\blx@bcfin=\read4
+\blx@bcfout=\write6
+\blx@langwohyphens=\language5
+\c@mincomprange=\count363
+\c@maxcomprange=\count364
+\c@mincompwidth=\count365
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex citestyle data model...
+Package biblatex Info: ... file 'authoryear.dbx' not found.
+Package biblatex Info: Trying to load biblatex bibstyle data model...
+Package biblatex Info: ... file 'authoryear-comp.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count366
+\c@savedafterword=\count367
+\c@annotator=\count368
+\c@savedannotator=\count369
+\c@author=\count370
+\c@savedauthor=\count371
+\c@bookauthor=\count372
+\c@savedbookauthor=\count373
+\c@commentator=\count374
+\c@savedcommentator=\count375
+\c@editor=\count376
+\c@savededitor=\count377
+\c@editora=\count378
+\c@savededitora=\count379
+\c@editorb=\count380
+\c@savededitorb=\count381
+\c@editorc=\count382
+\c@savededitorc=\count383
+\c@foreword=\count384
+\c@savedforeword=\count385
+\c@holder=\count386
+\c@savedholder=\count387
+\c@introduction=\count388
+\c@savedintroduction=\count389
+\c@namea=\count390
+\c@savednamea=\count391
+\c@nameb=\count392
+\c@savednameb=\count393
+\c@namec=\count394
+\c@savednamec=\count395
+\c@translator=\count396
+\c@savedtranslator=\count397
+\c@shortauthor=\count398
+\c@savedshortauthor=\count399
+\c@shorteditor=\count400
+\c@savedshorteditor=\count401
+\c@labelname=\count402
+\c@savedlabelname=\count403
+\c@institution=\count404
+\c@savedinstitution=\count405
+\c@lista=\count406
+\c@savedlista=\count407
+\c@listb=\count408
+\c@savedlistb=\count409
+\c@listc=\count410
+\c@savedlistc=\count411
+\c@listd=\count412
+\c@savedlistd=\count413
+\c@liste=\count414
+\c@savedliste=\count415
+\c@listf=\count416
+\c@savedlistf=\count417
+\c@location=\count418
+\c@savedlocation=\count419
+\c@organization=\count420
+\c@savedorganization=\count421
+\c@origlocation=\count422
+\c@savedoriglocation=\count423
+\c@origpublisher=\count424
+\c@savedorigpublisher=\count425
+\c@publisher=\count426
+\c@savedpublisher=\count427
+\c@language=\count428
+\c@savedlanguage=\count429
+\c@origlanguage=\count430
+\c@savedoriglanguage=\count431
+\c@pageref=\count432
+\c@savedpageref=\count433
+\shorthandwidth=\skip90
+\shortjournalwidth=\skip91
+\shortserieswidth=\skip92
+\shorttitlewidth=\skip93
+\shortauthorwidth=\skip94
+\shorteditorwidth=\skip95
+\locallabelnumberwidth=\skip96
+\locallabelalphawidth=\skip97
+\localshorthandwidth=\skip98
+\localshortjournalwidth=\skip99
+\localshortserieswidth=\skip100
+\localshorttitlewidth=\skip101
+\localshortauthorwidth=\skip102
+\localshorteditorwidth=\skip103
+Package biblatex Info: Trying to load enhanced support for Unicode engines...
+Package biblatex Info: ... file 'blx-unicode.def' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-unicode.def)
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count434
+\c@textcitetotal=\count435
+\c@textcitemaxnames=\count436
+\c@biburlbigbreakpenalty=\count437
+\c@biburlbreakpenalty=\count438
+\c@biburlnumpenalty=\count439
+\c@biburlucpenalty=\count440
+\c@biburllcpenalty=\count441
+\biburlbigskip=\muskip19
+\biburlnumskip=\muskip20
+\biburlucskip=\muskip21
+\biburllcskip=\muskip22
+\c@smartand=\count442
+)
+Package biblatex Info: Trying to load natbib compatibility...
+Package biblatex Info: ... file 'blx-natbib.def' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-natbib.def
+File: blx-natbib.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting.
+)
+Package biblatex Info: Trying to load bibliography style 'authoryear-comp'...
+Package biblatex Info: ... file 'authoryear-comp.bbx' found.
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/authoryear-c
+omp.bbx
+File: authoryear-comp.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/authoryear.b
+bx
+File: authoryear.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count443
+\c@bbx:relatedtotal=\count444
+)))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
+
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/cbx/authoryear.c
+bx
+File: authoryear.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)) (/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/xpatch/xpatch.sty
+Package: xpatch 2012/10/02 v0.3 Extending etoolbox patching commands
+)
+\c@papers=\count445
+\@quotelevel=\count446
+\@quotereset=\count447
+(./Vitae_cv_example.aux)
+\openout1 = `Vitae_cv_example.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 154.
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 154.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(39.83368pt, 517.84052pt, 39.83368pt)
+* v-part:(T,H,B)=(22.76228pt, 771.06952pt, 51.21504pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=517.84052pt
+* \textheight=771.06952pt
+* \oddsidemargin=-32.43631pt
+* \evensidemargin=-32.43631pt
+* \topmargin=-86.5077pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 154.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 154.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
+ line 154.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
+t line 154.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
+t line 154.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
+t line 154.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+54.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
+t line 154.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 154
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
+t line 154.
+ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box72
+Package hyperref Info: Link coloring OFF on input line 154.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitle
+string.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count448
+)
+LaTeX Info: Redefining \ref on input line 154.
+LaTeX Info: Redefining \pageref on input line 154.
+LaTeX Info: Redefining \nameref on input line 154.
+(./Vitae_cv_example.out) (./Vitae_cv_example.out)
+\@outlinefile=\write7
+\openout7 = `Vitae_cv_example.out'.
+
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/Users/isavalet/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout6 = `Vitae_cv_example.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'Vitae_cv_example.bbl' found.
+(./Vitae_cv_example.bbl
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 53.
+)
+Package biblatex Info: Reference section=0 on input line 154.
+Package biblatex Info: Reference segment=0 on input line 154.
+\headertextwidth=\skip104
+\headerphotowidth=\skip105
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.95116pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.6658pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.47559pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.94882pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.66417pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.47441pt on input line 159.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 7.6pt on input line 159.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
+(Font)              scaled to size 7.6pt on input line 159.
+LaTeX Font Info:    Calculating math sizes for size <6.8> on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.80072pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 4.76048pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 3.40034pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.79927pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.75946pt on input line 159.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 3.39963pt on input line 159.
+
+Overfull \hbox (1.46pt too wide) in paragraph at lines 159--159
+[]$[]$ $[]$$[]$ 
+ []
+
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 16.0pt on input line 177.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/b/n' will be
+(Font)              scaled to size 16.0pt on input line 177.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <9> not avail
+able
+(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
+t line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
+(Font)              scaled to size 9.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
+(Font)              scaled to size 8.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <8> not avail
+able
+(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
+t line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
+(Font)              scaled to size 8.0pt on input line 192.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 197.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/b/n' will be
+(Font)              scaled to size 9.0pt on input line 197.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/it' will be
+(Font)              scaled to size 10.0pt on input line 218.
+[1
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
+(./Vitae_cv_example.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 235.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
+Package rerunfilecheck Info: File `Vitae_cv_example.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
+
+Package logreq Info: Writing requests to 'Vitae_cv_example.run.xml'.
+\openout1 = `Vitae_cv_example.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 39062 strings out of 481768
+ 776233 string characters out of 5935245
+ 1582461 words of memory out of 5000000
+ 55474 multiletter control sequences out of 15000+600000
+ 536670 words of font info for 111 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 67i,11n,109p,807b,4691s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Vitae_cv_example.pdf (1 page).

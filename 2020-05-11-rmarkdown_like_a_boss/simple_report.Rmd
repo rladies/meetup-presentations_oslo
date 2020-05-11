@@ -1,0 +1,47 @@
+---
+title: "Simple report"
+author: "A. M. Mowinckel"
+date: "5/11/2020"
+output: html_document
+params: 
+  data: !r gapminder::gapminder
+  echoes: FALSE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = params$echoes)
+```
+
+```{css}
+p{
+  font-size: 12px;
+}
+```
+
+# Heading 1
+We are making a report of global population increase by year, using the gapminder dataset published freely online.
+
+```{r 'get-data'}
+gaminder_data <- params$data
+```
+
+## subheading
+```{r 'ggplot'}
+library(ggplot2)
+ggplot(gaminder_data, 
+       aes(year, pop)) + 
+  geom_point() +
+  labs(title = "Example output")
+```
+
+If we run a model predicting population increase by year, we get the following results.  
+```{r 'run-model'}
+model1 <- lm(pop ~ year, data = gaminder_data)
+```
+
+```{r 'model-output'}
+library(broom)
+table <- tidy(model1)
+knitr::kable(table)
+```
+

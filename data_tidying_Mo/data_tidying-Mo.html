@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Data tidying</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Athanasia Mo Mowinckel" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data tidying
+## - with {dplyr} and {tidyr} -
+### Athanasia Mo Mowinckel
+### 30.09.2019
+
+---
+
+
+class: middle, center
+
+
+
+![](https://www.oslobrains.no/wp-content/uploads/2017/09/LCBC_wide_compact_full.png)&lt;!-- --&gt;
+
+
+---
+
+.pull-left[
+## My co-workers
+
+&lt;img src="http://weknowmemes.com/wp-content/uploads/2012/02/help-me-obi-wan.jpg" height="100%" /&gt;
+]
+
+--
+
+.pull-right[
+
+## Me 
+
+&lt;img src="https://media.makeameme.org/created/no-problem-at.jpg" height="500px" /&gt;
+]
+
+---
+class: middle 
+
+.pull-left[
+## Data as you expect
+&lt;img src="https://img.huffingtonpost.com/asset/5873b0c21b00008f016e65cf.jpg?ops=scalefit_820_noupscale" height="350px" /&gt;
+]
+
+--
+
+.pull-right[
+## Data you get
+&lt;img src="https://secure.i.telegraph.co.uk/multimedia/archive/02637/messy-desk_2637008b.jpg" height="350px" /&gt;
+]
+
+---
+class: middle, center
+
+&lt;img src="http://blog.panorama9.com/wp-content/uploads/2014/12/patch-management-meme.jpg" height="100%" /&gt;
+
+---
+
+class: middle, center, inverse
+
+# {dplyr} and {tidyr} 
+# to the rescue
+
+
+---
+
+.pull-left[
+# {dplyr}
+&gt; is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" height="300px" /&gt;
+
+]
+
+.pull-right[
+# {tidyr}
+&gt; is a collection of functions to help you create "tidy" data, i.e. reshaping data structure to fit your needs  
+&lt;br&gt;
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" height="300px" /&gt;
+]
+
+---
+class: middle, center, inverse
+
+# {tidyr}
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" height="300px" /&gt;
+
+---
+
+# {tidyr} - to help you create tidy data.
+
+[From the tidyr site](https://tidyr.tidyverse.org/index.html)
+
+--
+
+** Tidy data is data where:** 
+
+- Every column is variable.  
+
+--
+
+- Every row is an observation.  
+
+--
+
+- Every cell is a single value.  
+
+--
+
+### Tidy data describes a standard way of storing data that is used wherever possible throughout the tidyverse. 
+
+---
+
+### Data with values in column headers
+
+.left-column[
+The data set `relig_income` gives us some information about the income levels of households of different religions. 
+
+Notice how the column headers are the income levels, and cell values are the number of households.
+
+]
+
+--
+
+.right-column[
+
+```r
+library(tidyverse)
+relig_income
+```
+
+```
+## # A tibble: 18 x 11
+##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k`
+##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Agnostic      27        34        60        81        76       137
+##  2 Atheist       12        27        37        52        35        70
+##  3 Buddhist      27        21        30        34        33        58
+##  4 Catholic     418       617       732       670       638      1116
+##  5 Don’t k…      15        14        15        11        10        35
+##  6 Evangel…     575       869      1064       982       881      1486
+##  7 Hindu          1         9         7         9        11        34
+##  8 Histori…     228       244       236       238       197       223
+##  9 Jehovah…      20        27        24        24        21        30
+## 10 Jewish        19        19        25        25        30        95
+## 11 Mainlin…     289       495       619       655       651      1107
+## 12 Mormon        29        40        48        51        56       112
+## 13 Muslim         6         7         9        10         9        23
+## 14 Orthodox      13        17        23        32        32        47
+## 15 Other C…       9         7        11        13        13        14
+## 16 Other F…      20        33        40        46        49        63
+## 17 Other W…       5         2         3         4         2         7
+## 18 Unaffil…     217       299       374       365       341       528
+## # … with 4 more variables: `$75-100k` &lt;dbl&gt;, `$100-150k` &lt;dbl&gt;,
+## #   `&gt;150k` &lt;dbl&gt;, `Don't know/refused` &lt;dbl&gt;
+```
+]
+
+---
+
+### Data with values in column headers
+
+.left-column[
+We want the income to become its own column, and the frequency to be stored in a seperate column.
+
+]
+
+--
+
+.right-column[
+
+```r
+relig_income %&gt;%
+  gather(income, frequency, -religion)
+```
+
+```
+## # A tibble: 180 x 3
+##    religion                income frequency
+##    &lt;chr&gt;                   &lt;chr&gt;      &lt;dbl&gt;
+##  1 Agnostic                &lt;$10k         27
+##  2 Atheist                 &lt;$10k         12
+##  3 Buddhist                &lt;$10k         27
+##  4 Catholic                &lt;$10k        418
+##  5 Don’t know/refused      &lt;$10k         15
+##  6 Evangelical Prot        &lt;$10k        575
+##  7 Hindu                   &lt;$10k          1
+##  8 Historically Black Prot &lt;$10k        228
+##  9 Jehovah's Witness       &lt;$10k         20
+## 10 Jewish                  &lt;$10k         19
+## # … with 170 more rows
+```
+]
+
+---
+
+### Data with values in column headers
+
+.left-column[
+The new `pivot_longer` function was recently released with syntax that might be a little more understandable (and memorable!)
+
+]
+
+--
+
+.right-column[
+
+```r
+relig_income %&gt;% 
+  pivot_longer(-religion, names_to = "income", values_to = "frequency")
+```
+
+```
+## # A tibble: 180 x 3
+##    religion income             frequency
+##    &lt;chr&gt;    &lt;chr&gt;                  &lt;dbl&gt;
+##  1 Agnostic &lt;$10k                     27
+##  2 Agnostic $10-20k                   34
+##  3 Agnostic $20-30k                   60
+##  4 Agnostic $30-40k                   81
+##  5 Agnostic $40-50k                   76
+##  6 Agnostic $50-75k                  137
+##  7 Agnostic $75-100k                 122
+##  8 Agnostic $100-150k                109
+##  9 Agnostic &gt;150k                     84
+## 10 Agnostic Don't know/refused        96
+## # … with 170 more rows
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+The data set `billboard` gives us some information about top billboard songs vor various time periods. 
+
+Notice how the column headers are numbers of weeks, one per song for the amounts of weeks that song was on the billboards.
+
+]
+
+--
+
+.right-column[
+
+```r
+billboard
+```
+
+```
+## # A tibble: 317 x 79
+##    artist track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7
+##    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac  Baby… 2000-02-26      87    82    72    77    87    94    99
+##  2 2Ge+h… The … 2000-09-02      91    87    92    NA    NA    NA    NA
+##  3 3 Doo… Kryp… 2000-04-08      81    70    68    67    66    57    54
+##  4 3 Doo… Loser 2000-10-21      76    76    72    69    67    65    55
+##  5 504 B… Wobb… 2000-04-15      57    34    25    17    17    31    36
+##  6 98^0   Give… 2000-08-19      51    39    34    26    26    19     2
+##  7 A*Tee… Danc… 2000-07-08      97    97    96    95   100    NA    NA
+##  8 Aaliy… I Do… 2000-01-29      84    62    51    41    38    35    35
+##  9 Aaliy… Try … 2000-03-18      59    53    38    28    21    18    16
+## 10 Adams… Open… 2000-08-26      76    76    74    69    68    67    61
+## # … with 307 more rows, and 69 more variables: wk8 &lt;dbl&gt;, wk9 &lt;dbl&gt;,
+## #   wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;, wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;,
+## #   wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;, wk19 &lt;dbl&gt;,
+## #   wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;,
+## #   wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;,
+## #   wk30 &lt;dbl&gt;, wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;,
+## #   wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;, wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;,
+## #   wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, wk43 &lt;dbl&gt;, wk44 &lt;dbl&gt;,
+## #   wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;, wk47 &lt;dbl&gt;, wk48 &lt;dbl&gt;, wk49 &lt;dbl&gt;,
+## #   wk50 &lt;dbl&gt;, wk51 &lt;dbl&gt;, wk52 &lt;dbl&gt;, wk53 &lt;dbl&gt;, wk54 &lt;dbl&gt;,
+## #   wk55 &lt;dbl&gt;, wk56 &lt;dbl&gt;, wk57 &lt;dbl&gt;, wk58 &lt;dbl&gt;, wk59 &lt;dbl&gt;,
+## #   wk60 &lt;dbl&gt;, wk61 &lt;dbl&gt;, wk62 &lt;dbl&gt;, wk63 &lt;dbl&gt;, wk64 &lt;dbl&gt;,
+## #   wk65 &lt;dbl&gt;, wk66 &lt;lgl&gt;, wk67 &lt;lgl&gt;, wk68 &lt;lgl&gt;, wk69 &lt;lgl&gt;,
+## #   wk70 &lt;lgl&gt;, wk71 &lt;lgl&gt;, wk72 &lt;lgl&gt;, wk73 &lt;lgl&gt;, wk74 &lt;lgl&gt;,
+## #   wk75 &lt;lgl&gt;, wk76 &lt;lgl&gt;
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+We want the weeks to become their own column, and the weeks ranking to be stored in a seperate column.
+
+]
+
+--
+
+.right-column[
+
+```r
+billboard %&gt;% 
+  gather(week, rank, starts_with("wk"), na.rm = TRUE)
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist         track                   date.entered week   rank
+##    &lt;chr&gt;          &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac          Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2Ge+her        The Hardest Part Of ... 2000-09-02   wk1      91
+##  3 3 Doors Down   Kryptonite              2000-04-08   wk1      81
+##  4 3 Doors Down   Loser                   2000-10-21   wk1      76
+##  5 504 Boyz       Wobble Wobble           2000-04-15   wk1      57
+##  6 98^0           Give Me Just One Nig... 2000-08-19   wk1      51
+##  7 A*Teens        Dancing Queen           2000-07-08   wk1      97
+##  8 Aaliyah        I Don't Wanna           2000-01-29   wk1      84
+##  9 Aaliyah        Try Again               2000-03-18   wk1      59
+## 10 Adams, Yolanda Open My Heart           2000-08-26   wk1      76
+## # … with 5,297 more rows
+```
+]
+
+---
+
+### Data with columns of repeated observations
+
+.left-column[
+With `pivot_longer` we can also do the same, now with perhaps some more transparent arguments.
+
+]
+
+--
+
+.right-column[
+
+```r
+billboard %&gt;% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    values_to = "rank", values_drop_na = TRUE
+  )
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist  track                   date.entered week   rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk7      99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
+## # … with 5,297 more rows
+```
+]
+
+---
+### Data with columns of repeated observations
+
+.left-column[
+We can even extent the `pivot_longer` function, so that week becomes an integer immediately. 
+
+The alternative is to use a `mutate` function from {dplyr} after pivoting to do so. 
+]
+
+--
+
+.right-column[
+
+```r
+billboard %&gt;% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    names_prefix = "wk", names_ptypes = list(week = integer()),
+    values_to = "rank", values_drop_na = TRUE
+  )
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist  track                   date.entered  week  rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;int&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26       1    87
+##  2 2 Pac   Baby Don't Cry (Keep... 2000-02-26       2    82
+##  3 2 Pac   Baby Don't Cry (Keep... 2000-02-26       3    72
+##  4 2 Pac   Baby Don't Cry (Keep... 2000-02-26       4    77
+##  5 2 Pac   Baby Don't Cry (Keep... 2000-02-26       5    87
+##  6 2 Pac   Baby Don't Cry (Keep... 2000-02-26       6    94
+##  7 2 Pac   Baby Don't Cry (Keep... 2000-02-26       7    99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02       1    91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02       2    87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02       3    92
+## # … with 5,297 more rows
+```
+]
+
+---
+class: middle, center, inverse
+
+# {dplyr}
+
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" height="300px" /&gt;
+
+---
+
+# {dplyr} - to alter and add to data
+
+[From the dplyr site](https://dplyr.tidyverse.org/)
+
+- `mutate()` adds new variables that are functions of existing variables.
+
+--
+
+- `select()` picks variables based on their names.  
+
+--
+
+- `filter()` picks cases based on their values.  
+
+--
+
+- `summarise()` reduces multiple values down to a single summary.  
+
+--
+
+- `arrange()` changes the ordering of the rows.  
+
+--
+
+These all combine naturally with `group_by()` which allows you to perform any operation “by group”. 
+
+
+---
+
+### Mutating data
+
+.left-column[
+If we go back to the billboards example we had before, and we don't do the step necessary to make `week` into an integer, we can alter (mutate) week to become an integer in a second step.
+
+`mutate` is handy because you can use information from the data.frame it self to add or alter variables in the data.frame in a row-wise manner.
+
+]
+
+--
+
+.right-column[
+
+```r
+billboard %&gt;% 
+  pivot_longer(
+    cols = starts_with("wk"), names_to = "week", 
+    values_to = "rank", values_drop_na = TRUE
+  ) %&gt;% 
+  mutate(week = parse_number(week))
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist  track                   date.entered  week  rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26       1    87
+##  2 2 Pac   Baby Don't Cry (Keep... 2000-02-26       2    82
+##  3 2 Pac   Baby Don't Cry (Keep... 2000-02-26       3    72
+##  4 2 Pac   Baby Don't Cry (Keep... 2000-02-26       4    77
+##  5 2 Pac   Baby Don't Cry (Keep... 2000-02-26       5    87
+##  6 2 Pac   Baby Don't Cry (Keep... 2000-02-26       6    94
+##  7 2 Pac   Baby Don't Cry (Keep... 2000-02-26       7    99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02       1    91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02       2    87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02       3    92
+## # … with 5,297 more rows
+```
+]
+
+---
+
+### Mutating data
+
+.left-column[
+
+The main {dplyr} functions also come with variants ending in `_at`, `_if`, `_all`, which allows you to do operations on multiple columns in a single step, as long as you want to do the same with all the selected columns.
+
+For instance we can z-transform all the weekly rankings of all songs in one go.
+]
+
+--
+
+.right-column[
+
+```r
+billboard %&gt;% 
+  mutate_at(vars(starts_with("wk")), scale)
+```
+
+```
+## # A tibble: 317 x 79
+##    artist track date.entered wk1[,1] wk2[,1] wk3[,1] wk4[,1] wk5[,1]
+##    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 2 Pac  Baby… 2000-02-26    0.479   0.595    0.335   0.772   1.29 
+##  2 2Ge+h… The … 2000-09-02    0.752   0.870    1.30   NA      NA    
+##  3 3 Doo… Kryp… 2000-04-08    0.0709 -0.0645   0.142   0.324   0.406
+##  4 3 Doo… Loser 2000-10-21   -0.270   0.265    0.335   0.414   0.448
+##  5 504 B… Wobb… 2000-04-15   -1.56   -2.04    -1.93   -1.92   -1.65 
+##  6 98^0   Give… 2000-08-19   -1.97   -1.77    -1.50   -1.51   -1.28 
+##  7 A*Tee… Danc… 2000-07-08    1.16    1.42     1.49    1.58    1.84 
+##  8 Aaliy… I Do… 2000-01-29    0.275  -0.504   -0.677  -0.840  -0.771
+##  9 Aaliy… Try … 2000-03-18   -1.43   -0.998   -1.30   -1.42   -1.49 
+## 10 Adams… Open… 2000-08-26   -0.270   0.265    0.431   0.414   0.490
+## # … with 307 more rows, and 71 more variables: wk6[,1] &lt;dbl&gt;,
+## #   wk7[,1] &lt;dbl&gt;, wk8[,1] &lt;dbl&gt;, wk9[,1] &lt;dbl&gt;, wk10[,1] &lt;dbl&gt;,
+## #   wk11[,1] &lt;dbl&gt;, wk12[,1] &lt;dbl&gt;, wk13[,1] &lt;dbl&gt;, wk14[,1] &lt;dbl&gt;,
+## #   wk15[,1] &lt;dbl&gt;, wk16[,1] &lt;dbl&gt;, wk17[,1] &lt;dbl&gt;, wk18[,1] &lt;dbl&gt;,
+## #   wk19[,1] &lt;dbl&gt;, wk20[,1] &lt;dbl&gt;, wk21[,1] &lt;dbl&gt;, wk22[,1] &lt;dbl&gt;,
+## #   wk23[,1] &lt;dbl&gt;, wk24[,1] &lt;dbl&gt;, wk25[,1] &lt;dbl&gt;, wk26[,1] &lt;dbl&gt;,
+## #   wk27[,1] &lt;dbl&gt;, wk28[,1] &lt;dbl&gt;, wk29[,1] &lt;dbl&gt;, wk30[,1] &lt;dbl&gt;,
+## #   wk31[,1] &lt;dbl&gt;, wk32[,1] &lt;dbl&gt;, wk33[,1] &lt;dbl&gt;, wk34[,1] &lt;dbl&gt;,
+## #   wk35[,1] &lt;dbl&gt;, wk36[,1] &lt;dbl&gt;, wk37[,1] &lt;dbl&gt;, wk38[,1] &lt;dbl&gt;,
+## #   wk39[,1] &lt;dbl&gt;, wk40[,1] &lt;dbl&gt;, wk41[,1] &lt;dbl&gt;, wk42[,1] &lt;dbl&gt;,
+## #   wk43[,1] &lt;dbl&gt;, wk44[,1] &lt;dbl&gt;, wk45[,1] &lt;dbl&gt;, wk46[,1] &lt;dbl&gt;,
+## #   wk47[,1] &lt;dbl&gt;, wk48[,1] &lt;dbl&gt;, wk49[,1] &lt;dbl&gt;, wk50[,1] &lt;dbl&gt;,
+## #   wk51[,1] &lt;dbl&gt;, wk52[,1] &lt;dbl&gt;, wk53[,1] &lt;dbl&gt;, wk54[,1] &lt;dbl&gt;,
+## #   wk55[,1] &lt;dbl&gt;, wk56[,1] &lt;dbl&gt;, wk57[,1] &lt;dbl&gt;, wk58[,1] &lt;dbl&gt;,
+## #   wk59[,1] &lt;dbl&gt;, wk60[,1] &lt;dbl&gt;, wk61[,1] &lt;dbl&gt;, wk62[,1] &lt;dbl&gt;,
+## #   wk63[,1] &lt;dbl&gt;, wk64[,1] &lt;dbl&gt;, wk65[,1] &lt;dbl&gt;, wk66[,1] &lt;dbl&gt;,
+## #   wk67[,1] &lt;dbl&gt;, wk68[,1] &lt;dbl&gt;, wk69[,1] &lt;dbl&gt;, wk70[,1] &lt;dbl&gt;,
+## #   wk71[,1] &lt;dbl&gt;, wk72[,1] &lt;dbl&gt;, wk73[,1] &lt;dbl&gt;, wk74[,1] &lt;dbl&gt;,
+## #   wk75[,1] &lt;dbl&gt;, wk76[,1] &lt;dbl&gt;
+```
+]
+
+---
+
+### Mutating data
+
+.left-column[
+
+We're going to use the `relig_income` dataset again, and use it in its untidy form, so highlight some cool things you can do with `mutate` and `select` .
+
+Here, we use mutate to add a total row, and use `select_if` to select all numeric columns to create a sum of.
+
+Then, we use `mutate_if` to alter each of the numeric columns, so they become a percentage
+    
+]
+
+--
+
+.right-column[
+
+```r
+relig_income %&gt;% 
+  mutate(total = rowSums(select_if(., is.numeric))) %&gt;% 
+  mutate_if(is.numeric, function(x) (x/.$total)*100 )
+```
+
+```
+## # A tibble: 18 x 12
+##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k`
+##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Agnostic   3.27       4.12      7.26      9.81      9.20      16.6
+##  2 Atheist    2.33       5.24      7.18     10.1       6.80      13.6
+##  3 Buddhist   6.57       5.11      7.30      8.27      8.03      14.1
+##  4 Catholic   5.19       7.66      9.09      8.32      7.92      13.9
+##  5 Don’t k…   5.51       5.15      5.51      4.04      3.68      12.9
+##  6 Evangel…   6.07       9.17     11.2      10.4       9.30      15.7
+##  7 Hindu      0.389      3.50      2.72      3.50      4.28      13.2
+##  8 Histori…  11.4       12.2      11.8      11.9       9.87      11.2
+##  9 Jehovah…   9.30      12.6      11.2      11.2       9.77      14.0
+## 10 Jewish     2.79       2.79      3.67      3.67      4.40      13.9
+## 11 Mainlin…   3.87       6.63      8.29      8.77      8.71      14.8
+## 12 Mormon     4.99       6.88      8.26      8.78      9.64      19.3
+## 13 Muslim     5.17       6.03      7.76      8.62      7.76      19.8
+## 14 Orthodox   3.58       4.68      6.34      8.82      8.82      12.9
+## 15 Other C…   6.98       5.43      8.53     10.1      10.1       10.9
+## 16 Other F…   4.45       7.35      8.91     10.2      10.9       14.0
+## 17 Other W…  11.9        4.76      7.14      9.52      4.76      16.7
+## 18 Unaffil…   5.85       8.07     10.1       9.85      9.20      14.2
+## # … with 5 more variables: `$75-100k` &lt;dbl&gt;, `$100-150k` &lt;dbl&gt;,
+## #   `&gt;150k` &lt;dbl&gt;, `Don't know/refused` &lt;dbl&gt;, total &lt;dbl&gt;
+```
+]
+
+---
+
+### Summarising data
+
+.pull-left[
+
+
+```r
+relig_income %&gt;% 
+  pivot_longer(-religion, 
+               names_to = "income", 
+               values_to = "frequency") %&gt;% 
+*   group_by(religion) %&gt;%
+  summarise_at(vars(frequency), 
+               list(Mean = mean, 
+                    Min = min, 
+                    Max = max,
+                    Sum = sum))
+```
+
+```
+## # A tibble: 18 x 5
+##    religion                 Mean   Min   Max   Sum
+##    &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Agnostic                 82.6    27   137   826
+##  2 Atheist                  51.5    12    76   515
+##  3 Buddhist                 41.1    21    62   411
+##  4 Catholic                805.    418  1489  8054
+##  5 Don’t know/refused       27.2    10   116   272
+##  6 Evangelical Prot        947.    414  1529  9472
+##  7 Hindu                    25.7     1    54   257
+##  8 Historically Black Prot 200.     78   339  1995
+##  9 Jehovah's Witness        21.5     6    37   215
+## 10 Jewish                   68.2    19   162   682
+## 11 Mainline Prot           747     289  1328  7470
+## 12 Mormon                   58.1    29   112   581
+## 13 Muslim                   11.6     6    23   116
+## 14 Orthodox                 36.3    13    73   363
+## 15 Other Christian          12.9     7    18   129
+## 16 Other Faiths             44.9    20    71   449
+## 17 Other World Religions     4.2     2     8    42
+## 18 Unaffiliated            371.    217   597  3707
+```
+
+]
+
+--
+
+.pull-right[
+
+```r
+relig_income %&gt;% 
+  pivot_longer(-religion, 
+               names_to = "income", 
+               values_to = "frequency") %&gt;% 
+* group_by(income) %&gt;%
+  summarise_at(vars(frequency), 
+               list(Mean = mean,
+                    Min = min, 
+                    Max = max,
+                    Sum = sum))
+```
+
+```
+## # A tibble: 10 x 5
+##    income              Mean   Min   Max   Sum
+##    &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 &lt;$10k               107.     1   575  1930
+##  2 &gt;150k               145.     4   634  2608
+##  3 $10-20k             154.     2   869  2781
+##  4 $100-150k           178.     4   792  3197
+##  5 $20-30k             186.     3  1064  3357
+##  6 $30-40k             183.     4   982  3302
+##  7 $40-50k             171.     2   881  3085
+##  8 $50-75k             288.     7  1486  5185
+##  9 $75-100k            222.     3   949  3990
+## 10 Don't know/refused  340.     8  1529  6121
+```
+]
+
+---
+
+### Summarising data
+
+
+```r
+billboard %&gt;% 
+  summarise_at(vars(wk1, wk5, wk10, wk20, wk30), 
+               list(Mean = mean, 
+                    Max = min, 
+                    Min = max,
+                    Sum = sum),
+               na.rm = TRUE)
+```
+
+```
+## # A tibble: 1 x 20
+##   wk1_Mean wk5_Mean wk10_Mean wk20_Mean wk30_Mean wk1_Max wk5_Max wk10_Max
+##      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1     80.0     56.3      45.8      54.3      26.4      15       2        1
+## # … with 12 more variables: wk20_Max &lt;dbl&gt;, wk30_Max &lt;dbl&gt;, wk1_Min &lt;dbl&gt;,
+## #   wk5_Min &lt;dbl&gt;, wk10_Min &lt;dbl&gt;, wk20_Min &lt;dbl&gt;, wk30_Min &lt;dbl&gt;,
+## #   wk1_Sum &lt;dbl&gt;, wk5_Sum &lt;dbl&gt;, wk10_Sum &lt;dbl&gt;, wk20_Sum &lt;dbl&gt;,
+## #   wk30_Sum &lt;dbl&gt;
+```
+
+---
+
+### Summarising data
+
+
+
+```r
+billboard %&gt;% 
+  pivot_longer(starts_with("wk"),
+               names_to = "week",
+               values_to = "rank") %&gt;% 
+  mutate(week = parse_number(week)) %&gt;% 
+  summarise_at(vars(rank),
+               list(Mean = mean, Max = min, Min = max),
+               na.rm = TRUE)
+```
+
+```
+## # A tibble: 1 x 3
+##    Mean   Max   Min
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  51.1     1   100
+```
+
+---
+
+### Summarising data
+
+
+
+```r
+billboard %&gt;% 
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "rank") %&gt;% 
+  mutate(week = parse_number(week)) %&gt;% 
+* group_by(artist, track) %&gt;%
+  summarise_at(vars(rank),
+               list(Mean = mean, Max = min, Min = max),
+               na.rm = TRUE)
+```
+
+```
+## # A tibble: 317 x 5
+## # Groups:   artist [228]
+##    artist         track                    Mean   Max   Min
+##    &lt;chr&gt;          &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac          Baby Don't Cry (Keep...  85.4    72    99
+##  2 2Ge+her        The Hardest Part Of ...  90      87    92
+##  3 3 Doors Down   Kryptonite               26.5     3    81
+##  4 3 Doors Down   Loser                    67.1    55    76
+##  5 504 Boyz       Wobble Wobble            56.2    17    96
+##  6 98^0           Give Me Just One Nig...  37.6     2    94
+##  7 A*Teens        Dancing Queen            97      95   100
+##  8 Aaliyah        I Don't Wanna            52.0    35    86
+##  9 Aaliyah        Try Again                16.7     1    59
+## 10 Adams, Yolanda Open My Heart            67.8    57    89
+## # … with 307 more rows
+```
+
+---
+class: inverse, center, middle
+
+# There you go!
+
+### A small intro to tidying data
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
