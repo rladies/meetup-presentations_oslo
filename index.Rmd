@@ -1,0 +1,45 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{css, echo = FALSE}
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+
+body { font-family: 'Lato', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif; }
+h1, h2, h3 { font-family: 'Yanone Kaffeesatz'; }
+
+body {
+  background-color: #562457;
+}
+
+p, h1, h2, h3 {
+  font-weight: normal;
+  color: #fff;
+}
+
+a{
+  color: #fff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ddd;
+}
+```
+
+# Meetup presentations - RLadies Oslo
+
+2018-04-23 &emsp; [Launch](2018-04-23_launch-oslo/launch-oslo.html)  
+2018-04-23 &emsp; [Adding external images to plots](2018-04-23-external-images-to-plots/AddingExternalImages.html)  
+2018-12-03 &emsp; [Topic Modeling](2018-12-03_topic_modelling/Rladies_TM_031218.pdf)  
+2019-02-04 &emsp; [Shiny workshop](2019-02-04_Shiny_workshop/presentation_2019-02-04.html)  
+2019-03-18 &emsp; [Bayesian methods](2019-03-18_bayesian_methods/Rladies_Valeria_mod.pdf)  
+2019-09-30 &emsp; [Data tidying](2019-09-30-data_tidying_Mo/data_tidying-Mo.html)  
+2020-03-03 &emsp; [Rstudio::Conf 2020](2020-03-03_rstudioConf2020/RStudioConf2020_rladies030320.pdf)  
+2020-05-11 &emsp; [Rmarkdown to impress your boss!](2020-05-11-rmarkdown_like_a_boss/presentation.html)
